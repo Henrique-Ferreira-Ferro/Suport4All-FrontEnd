@@ -41,7 +41,7 @@ function loadContent(url) {
 // Adiciona event listeners aos links com data-url
 document.querySelectorAll('a[data-url]').forEach(function(link) {
     link.addEventListener('click', function(event) {
-        event.preventDefault();  // Evita o comportamento padrão de navegação
+        event.preventDefault(); 
         const url = this.getAttribute('data-url');
         loadContent(url);  // Carrega o conteúdo na área principal
     });
