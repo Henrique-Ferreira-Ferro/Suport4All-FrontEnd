@@ -15,7 +15,10 @@ body {
 
 main {
     padding: 20px;
-    
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: #333;
 }
 
 #sidebar {
@@ -26,7 +29,7 @@ main {
     min-height: 100vh;  /* Define a altura mínima como 100% da tela */
     height: auto;  /* Deixa a altura automática para se ajustar ao conteúdo */
     max-height: 100%;  /* Não ultrapassa 100% da altura */
-    border-radius: 0px 18px 18px 0px;
+    /*border-radius: 0px 18px 18px 0px;*/
     position: relative;
     transition: all .5s;
     min-width: 82px;
@@ -212,4 +215,29 @@ main {
 .dropdown.open .dropdown-icon {
     transform: rotate(180deg);
 }
+
+/*Criar chamado - se houver conflito com os css fazer aqui!*/
+
+.criar-chamado {
+    width: 90%;
+    max-width: 1200px; 
+    min-width: 500px;  /* Define um limite mínimo */
+    height: 90vh;
+    background-color: white;
+    border-radius: 8px;
+
+    
+}
+
+.div-container{
+    
+}
+
+.form-chamado{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
 
