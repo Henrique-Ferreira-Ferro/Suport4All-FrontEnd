@@ -8,24 +8,30 @@
 </head>
 <body>
     <main class="main-chama">
+
         <section class="criar-chamado">
             <div class="div-container">
                 <h1>Abrir um Chamado</h1>
                 <form action="" class="form-chamado">
+                    
 
-                    <input type="text" placeholder="Titulo">
-                    <select name="Extremidade" id="" >
-                        <option value="" disabled>Extremidade</option>
+                    <label for="">Titulo</label>
+                    <input class="input-ajust" type="text">
+                    <label for="">Extremidade</label>
+                    <select class="select-ajust" name="Extremidade" id="" >
                         <option value="">Simples</option>
                         <option value="">Media</option>
                         <option value="">Complexa</option>
                         <option value="">Urgente</option>
                     </select>
-                    <p>Data atual!</p>
-                    <input type="file" placeholder="Enviar arquivo">
-                    <textarea name="" id="" placeholder="Descrição"></textarea>
-                </div>
-            </form>
+                    <label for="">Enviar arquivo</label>
+                    <input type="file">
+                    <label for="">Descrição do chamado</label>
+                    <textarea class="text-area" name="" id="" ></textarea>
+                </form>
+                <button class="btn-forms">Abrir Chamado</button>
+            </div>
+                 
         </section>
     </main>
 </body>
