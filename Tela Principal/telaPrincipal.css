@@ -247,9 +247,45 @@ main {
     padding: 5px;
 }
 
-.select-ajust{
-    width: 35%;
+.form-chamado input, .form-chamado textarea {
+    border: 1px solid rgb(220, 220, 251);
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
 }
+
+.form-chamado input:focus, .form-chamado textarea:focus {
+    border-color: #6c63ff;
+    box-shadow: 0 0 5px rgba(108, 99, 255, 0.5);
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+
+.select-ajust{
+    width: 150px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+    font-size: 16px;
+    color: #333;
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+}
+
+.select-ajust:hover{
+    cursor:pointer
+}
+
+.select-ajust option {
+    padding: 10px;
+    background-color: #fff;
+    color: #333;
+    font-size: 16px;
+}
+
+
 .input-ajust{
     width: 80%;
     
@@ -260,10 +296,22 @@ main {
     height: 20vh;
 }
 
-.btn-forms{
+.btn-forms {
     width: 200px;
     height: 30px;
+    background-color: #388DA8;
+    border: none;
+    color: #ffffff;
+    box-shadow: 0 0 5px rgba(108, 99, 255, 0.5);
+    transition: all 0.5s ease;
 }
+
+.btn-forms:hover {
+    cursor: pointer;
+    background-color: #2a6d8a;
+    box-shadow: 0 0 15px rgba(108, 99, 255, 0.7);
+}
+
 
 
 /* FIm Criar chamado !*/
