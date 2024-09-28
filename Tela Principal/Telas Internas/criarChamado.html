@@ -7,9 +7,9 @@
     <link rel="stylesheet" href="criarChamado.css">
 </head>
 <body>
-    <main class="main-chama">
+    <main>
 
-        <section class="criar-chamado">
+        <section class="ajust-section">
             <div class="div-container">
                 <h1>Abrir um Chamado</h1>
                 <form action="" class="form-chamado">
@@ -24,9 +24,14 @@
                         <option value="">Complexa</option>
                         <option value="">Urgente</option>
                     </select>
-                    <label for="file" class="custom-file-button">Escolha um arquivo</label>
+                    <div>
+                        <label for="file" class="custom-file-button">Escolha um arquivo</label> <span class="span-form">- Opcional</span>                    
+                    </div>
                     <input type="file" id="file" name="file" class="hidden-file-input">
-                    <label for="">Descrição do chamado</label>
+                    <div>
+                        <label for="">Descrição do chamado</label> <span class="span-form">- Opcional</span>
+                    
+                    </div>
                     <textarea class="text-area" name="" id="" ></textarea>
                 </form>
                 <button class="btn-forms">Abrir Chamado</button>
