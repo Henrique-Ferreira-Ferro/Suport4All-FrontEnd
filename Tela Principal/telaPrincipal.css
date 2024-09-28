@@ -14,7 +14,7 @@ body {
 }
 
 main {
-    padding: 20px;
+    padding: 20px 0px 20px 0px;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -221,6 +221,7 @@ main {
 
     display: flex;
     height: 50vh;
+    min-width: 50%;
     justify-content: center;
     align-items: center;
     gap: 10px;
@@ -276,18 +277,18 @@ main {
 .ajust-section {
     width: 90%;
     max-width: 1200px; 
-    min-width: 400px;  /* Define um limite mínimo */
-    height: 90vh;
+    height: auto; /* Ajusta a altura automaticamente */
     background-color: white;
     border-radius: 8px;
-
     display: flex;
     padding: 20px;
     justify-content: center;
+    flex-direction: column; /* Alinhamento em coluna para telas menores */
 }
 
 .div-container{
     display: flex;
+    height: 80vh;
     flex-direction: column;
     gap: 20px;
 }
@@ -301,6 +302,10 @@ main {
 .form-chamado input, textarea, select{
     outline-style: none;
     padding: 5px;
+}
+
+.hidden-file-input{
+    width: 60%;
 }
 
 .form-chamado input, .form-chamado textarea {
@@ -349,7 +354,7 @@ main {
 }
 
 .input-ajust{
-    width: 80%;
+    width: 30%;
     
 }
 
@@ -382,14 +387,115 @@ main {
 .div-form{
     display: flex;
     align-items: start;
-    width: 600px;
+    min-width: 200px;
+    width: 50%;
+    max-width: 600px;
+}
+.table-container {
+    width: 100%;
+    overflow-x: auto; /* Habilita rolagem horizontal em telas pequenas */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;  /* Remove espaçamento entre células */
+    background-color: #ffffff;  /* Fundo branco */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);  /* Sombra leve para destacar a tabela */
+    border-radius: 8px;  /* Bordas arredondadas */
+    overflow: hidden;  /* Para bordas arredondadas */
+    margin-top: 20px;
+    border: 1px solid #ccc;
 
 }
 
-#input-ajust-titulo input{
-    width: 300px;
+th, td {
+    white-space: nowrap; /* Evita que o conteúdo quebre */
+    padding: 12px 15px;
 }
 
+th {
+    background-color: #388DA8;  /* Fundo azul */
+    color: #ffffff;  /* Texto branco */
+    text-align: left;
+    padding: 12px 15px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* Estilos para as células de dados */
+td {
+    padding: 12px 15px;
+    font-size: 14px;
+    color: #333;
+}
+
+
+/* Estilo para o hover das linhas */
+tr:hover {
+    background-color: #f0f4f8;  /* Cor de fundo ao passar o mouse */
+    transition: background-color 0.2s ease;
+}
+
+.btn-edit{
+    background-color: #388DA8;  /* Azul */
+    color: #ffffff;  /* Texto branco */
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: background-color 0.5s ease;
+}
+
+.btn-edit:hover{
+    cursor: pointer;
+    background-color: #67aac7;  /* Azul mais escuro no hover */
+}
+
+.div-form form{
+    display: flex;
+    
+}
 
 
 /*Acompanhar Chamado - FIM*/
+
+
+
+
+/*Ajuste para dispositivos moveis*/
+
+@media (max-width: 768px) {
+    .ajust-section {
+        padding: 10px;
+    }
+
+    .div-form {
+        width: 100%;
+    }
+
+    .board-container {
+        flex-wrap: initial;
+
+        gap: 20px;
+    }
+
+    table, th, td {
+        font-size: 12px; /* Tamanho de texto menor em telas pequenas */
+    }
+}
+
+@media (max-width: 480px) {
+    .ajust-section {
+        padding: 5px;
+    }
+
+    th, td {
+        padding: 8px 10px; /* Menor espaçamento para ajustar a tabela */
+    }
+
+    .board-container {
+        gap: 10px; /* Menor espaçamento entre as caixas do board */
+    }
+}
+
+
+
