@@ -32,6 +32,8 @@ document.addEventListener("DOMContentLoaded", function() {
             })
             .then(data => {
                 document.getElementById('main-content').innerHTML = data;
+                // Reaplicar os event listeners após o carregamento de nova página
+                applyLinkListeners();
             })
             .catch(error => {
                 console.error('Erro:', error);
@@ -39,27 +41,17 @@ document.addEventListener("DOMContentLoaded", function() {
             });
     }
 
-    // Adiciona event listeners aos links com data-url
-    document.querySelectorAll('a[data-url]').forEach(function(link) {
-        link.addEventListener('click', function(event) {
-            event.preventDefault(); 
-            const url = this.getAttribute('data-url');
-            loadContent(url);  // Carrega o conteúdo na área principal
+    // Função para adicionar event listeners aos links com data-url
+    function applyLinkListeners() {
+        document.querySelectorAll('a[data-url]').forEach(function(link) {
+            link.addEventListener('click', function(event) {
+                event.preventDefault(); 
+                const url = this.getAttribute('data-url');
+                loadContent(url);  // Carrega o conteúdo na área principal
+            });
         });
-    });
+    }
 
-    // Funcionalidades e recursos referente a tela de abrir chamados
-
-    
-
-
-
-
-
-    // Fim das funcionalidades para a tela de abrir chamados
-
-
-
-
-
+    // Aplicar event listeners inicialmente
+    applyLinkListeners();
 });

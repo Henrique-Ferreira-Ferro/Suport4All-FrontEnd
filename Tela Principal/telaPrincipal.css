@@ -452,11 +452,65 @@ tr:hover {
 
 .div-form form{
     display: flex;
-    
+
+}
+
+.form-acompanha{
+    display: flex;
+
+    gap: 20px;
+    align-items: center;
+}
+
+.form-acompanha input{
+    border: 1px solid rgb(220, 220, 251);
+    padding: 10px;
+    height: 30px;
+    font-size: 16px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+    outline: none;
+    gap: 10px;
+}
+
+.form-acompanha input:focus{
+    border-color: #388DA8;
+    box-shadow: 0 0 5px #388DA8;
+    transition: border-color 0.3s, box-shadow 0.3s;
 }
 
 
+
+
+
 /*Acompanhar Chamado - FIM*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -467,7 +521,9 @@ tr:hover {
     .ajust-section {
         padding: 10px;
     }
-
+    .form-acompanha{
+        flex-wrap: wrap;
+    }
     .div-form {
         width: 100%;
     }
@@ -495,6 +551,12 @@ tr:hover {
     .board-container {
         gap: 10px; /* Menor espaçamento entre as caixas do board */
     }
+
+    .form-acompanha{
+        flex-wrap: wrap;
+
+    }
+
 }
 
 
