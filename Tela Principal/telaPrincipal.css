@@ -488,16 +488,28 @@ tr:hover {
 
 
 
+/*Estilo relativo ao usuario*/
+
+.select-ajust-depart{
+    width: 200px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+    font-size: 16px;
+    color: #333;
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+}
 
 
 
+.input-ajust-email{
+    width: 40%;
+
+}
 
 
-
-
-
-
-
+/*Fim estilo relativo ao usuario*/
 
 
 
