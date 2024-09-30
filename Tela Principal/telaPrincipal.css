@@ -304,6 +304,10 @@ main {
     padding: 5px;
 }
 
+.file-input{
+    display: none;
+}
+
 .hidden-file-input{
     width: 60%;
 }
@@ -546,6 +550,20 @@ tr:hover {
     resize: none;
 }
 
+
+.btn-delete{
+    background-color: #388DA8;  /* Azul */
+    color: #ffffff;  /* Texto branco */
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: background-color 0.5s ease;
+}
+
+.btn-delete:hover{
+    cursor: pointer;
+    background-color: #f1635c;  /* Azul mais escuro no hover */
+}
 
 /*Fim - Estilo referente as Senhas Gerais*/
 

@@ -55,3 +55,27 @@ document.addEventListener("DOMContentLoaded", function() {
     // Aplicar event listeners inicialmente
     applyLinkListeners();
 });
+
+/*Função para carregar imagem de um usuario  */
+
+document.querySelector('.file-input').addEventListener('change',function(event){
+    const file = event.target.files[0]; // obtem o arquivo selecionado
+
+    //Se o arquivo existir
+     if(file){
+         const reader = new FileReader(); //Cria objeto do tipo FileReader para ler o arquivo
+         //Quando conclui a leitura, o src da imagem é alterado para a url da imagem
+         reader.onload = function(e){
+            document.getElementById('user_avatar').src = e.target.result;
+         };
+         reader.readAsDataURL(file); //Lê o arquivo como uma URL de dados
+     }
+
+})
+
+
+
+
+
+
+
