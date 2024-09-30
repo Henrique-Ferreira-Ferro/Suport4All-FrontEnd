@@ -361,6 +361,7 @@ main {
 .text-area{
     width: 50vw;
     height: 20vh;
+    resize: none;
 }
 
 .btn-forms {
@@ -537,11 +538,16 @@ tr:hover {
 
 /*Fim estilo relativo ao usuario*/
 
+/*Inicio - Estilo referente as Senhas Gerais*/
+
+.text-area-reduze{
+    width: 30vw;
+    height: 15vh;
+    resize: none;
+}
 
 
-
-
-
+/*Fim - Estilo referente as Senhas Gerais*/
 
 
 
