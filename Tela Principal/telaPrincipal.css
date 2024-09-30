@@ -509,6 +509,32 @@ tr:hover {
 }
 
 
+.form-section{
+    width: 90%;
+    max-width: 1200px;
+    background-color: white;
+    border-radius: 8px;
+    display: flex;
+    padding: 20px;
+    justify-content: space-between;
+    flex-direction: row; /* Alinha o form e a imagem lado a lado */
+    align-items: center;
+    margin: 0 auto; /* Centraliza a seção */
+}
+
+.form-image{
+    width: 50%;
+    height: auto;
+    object-fit: contain; /* Mantém a proporção da imagem */
+    margin-left: 20px;
+    border-radius: 8px;
+}
+
+
+.input-ajust-create{
+    width: 30vw;
+}
+
 /*Fim estilo relativo ao usuario*/
 
 
@@ -549,6 +575,24 @@ tr:hover {
     table, th, td {
         font-size: 12px; /* Tamanho de texto menor em telas pequenas */
     }
+
+
+    /*Relativo a criar usuario*/
+
+    .form-section {
+        flex-direction: column; /* Para telas pequenas, o layout vira coluna */
+        align-items: center;
+    }
+    
+    .form-image {
+        width: 80%; /* Ajuste do tamanho da imagem */
+        margin: 20px 0;
+    }
+
+    .form-container {
+        width: 100%; /* Formulário ocupa 100% da largura */
+    }
+
 }
 
 @media (max-width: 480px) {
