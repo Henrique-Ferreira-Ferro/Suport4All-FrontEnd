@@ -517,6 +517,7 @@ tr:hover {
 .form-section{
     width: 90%;
     max-width: 1200px;
+    height: auto;
     background-color: white;
     border-radius: 8px;
     display: flex;
@@ -568,10 +569,30 @@ tr:hover {
 /*Fim - Estilo referente as Senhas Gerais*/
 
 
+/*duvidas - Estilo referente a tela de duvidas*/
+
+.card-info{
+    width: 190px;
+    height: 240px;
+    background-color: #F0F2F5;
+    flex: 1 1 190px; /* Isso garante que os cartões sejam flexíveis e responsivos */
+}
+
+.div-container-faq{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; /* Ajusta o espaçamento entre os itens */
+    gap: 20px;
+    width: 100%;
+    max-height: 100vh; /* Limita a altura para evitar overflow */
+    overflow: auto; /* Adiciona scroll se o conteúdo exceder a altura */
+    padding-bottom: 20px; /* Espaçamento inferior para acomodar os cartões */
+    box-sizing: border-box;
+}
 
 
 
-
+/*duvidas - Fim da tela de duvidas*/
 
 
 
