@@ -47,15 +47,15 @@ main {
     
 }
 
-#user:hover{
-    cursor: pointer;
-}
-
 #user_avatar {
     width: 50px;
     height: 50px;
     object-fit: cover;
     border-radius: 20px;
+}
+
+#user_avatar:hover{
+    cursor: pointer;
 }
 
 #user_infos {
@@ -288,7 +288,7 @@ main {
 
 .div-container{
     display: flex;
-    height: 80vh;
+    height: 94vh;
     flex-direction: column;
     gap: 20px;
 }
@@ -546,7 +546,7 @@ tr:hover {
 
 .text-area-reduze{
     width: 30vw;
-    height: 15vh;
+    height: 9vh;
     resize: none;
 }
 
@@ -606,6 +606,8 @@ tr:hover {
     .form-section {
         flex-direction: column; /* Para telas pequenas, o layout vira coluna */
         align-items: center;
+        height: 100vh;
+        max-height: 100%;
     }
     
     .form-image {
