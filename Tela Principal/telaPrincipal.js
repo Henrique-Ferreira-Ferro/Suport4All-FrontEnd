@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
+
     // Controle da Sidebar
     document.getElementById('open_btn').addEventListener('click', function(){
         document.getElementById('sidebar').classList.toggle('open-sidebar');
@@ -14,28 +15,25 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 
-    /*Função para carregar imagem de um usuario  */
-
+    // Função para carregar imagem de um usuario
     document.getElementById('user_avatar').addEventListener('click', function(){
         document.querySelector('.file-input').click();
     })
 
     document.querySelector('.file-input').addEventListener('change',function(event){
-        const file = event.target.files[0]; // obtem o arquivo selecionado
+        const file = event.target.files[0]; // Obtem o arquivo selecionado
 
-        //Se o arquivo existir
+        // Se o arquivo existir
         if(file){
-            const reader = new FileReader(); //Cria objeto do tipo FileReader para ler o arquivo
-            //Quando conclui a leitura, o src da imagem é alterado para a url da imagem
+            const reader = new FileReader(); // Cria objeto do tipo FileReader para ler o arquivo
+            // Quando conclui a leitura, o src da imagem é alterado para a url da imagem
             reader.onload = function(e){
                 document.getElementById('user_avatar').src = e.target.result;
             };
-            reader.readAsDataURL(file); //Lê o arquivo como uma URL de dados
+            reader.readAsDataURL(file); // Lê o arquivo como uma URL de dados
         }
 
-    })
-
-    /** Fim da função de carregar imagem do usuario */
+    });
 
     // Função para carregar conteúdo na área principal
     function loadContent(url) {
@@ -66,13 +64,23 @@ document.addEventListener("DOMContentLoaded", function() {
                 loadContent(url);  // Carrega o conteúdo na área principal
             });
         });
-    }
+
+        // Adiciona o event listener para o botão "Abrir Chamado"
+
+        //Funcionalidades referente a aberta de chamado !!
+
+        const titulo = document.querySelector("#titulo-input");
+        const btnAbrir = document.querySelector("#btn-abrir");
+        
+        btnAbrir.addEventListener("click", function(){
+            console.log(titulo.value);  // Agora imprime o valor inserido no input
+            alert("Chamado aberto com o título: " + titulo.value);
+        });
+        
+        
 
 
-    /*
-     * código referente a abertura de um chamado! 
-     * 
-     */
+        //Fim da funcionalidade de abertura de chamado
     
 
 
@@ -80,21 +88,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 
-
-
-
-
-
-
+        }
     // Aplicar event listeners inicialmente
     applyLinkListeners();
 });
-
-
-
-
-
-
-
-
-

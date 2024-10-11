@@ -7,8 +7,6 @@
     <link rel="stylesheet" href="criarChamado.css">
 </head>
 <body>
-    <main>
-
         <section class="ajust-section">
             <div class="div-container">
                 <h1>Abrir um Chamado</h1>
@@ -16,7 +14,7 @@
                     
 
                     <label for="">Titulo</label>
-                    <input class="input-ajust" type="text">
+                    <input class="input-ajust" type="text" id="titulo-input">
                     <label for="">Extremidade</label>
                     <select class="select-ajust" name="Extremidade" id="" >
                         <option value="">Simples</option>
@@ -34,10 +32,19 @@
                     </div>
                     <textarea class="text-area" name="" id="" ></textarea>
                 </form>
-                <button class="btn-forms">Abrir Chamado</button>
+                <button class="btn-forms" id="btn-abrir">Abrir Chamado</button>
             </div>
-                 
+            <script>
+                const titulo = document.querySelector("#titulo-input");
+    
+                const btnAbrir = document.querySelector("#btn-abrir");
+    
+                btnAbrir.addEventListener("click", function(){
+                    console.log(titulo.value);  // Agora imprime o valor inserido no input
+                    alert("teste de botão clicado");
+                })
+    
+            </script>
         </section>
-    </main>
 </body>
 </html>
