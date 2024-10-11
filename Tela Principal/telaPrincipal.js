@@ -68,6 +68,24 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
+
+    /*
+     * código referente a abertura de um chamado! 
+     * 
+     */
+    
+
+
+
+
+
+
+
+
+
+
+
+
     // Aplicar event listeners inicialmente
     applyLinkListeners();
 });
