@@ -65,15 +65,23 @@ document.addEventListener("DOMContentLoaded", function() {
             });
         });
 
-        // Adiciona o event listener para o botão "Abrir Chamado"
+        // Inicio dos eventos relacionados a chamados
+        
         const titulo = document.querySelector("#titulo-input");
         const btnAbrir = document.querySelector("#btn-abrir");
-        if (btnAbrir) {
+        if(btnAbrir){
             btnAbrir.addEventListener("click", function(){
                 console.log(titulo.value);  // Agora imprime o valor inserido no input
                 alert("Chamado aberto com o título: " + titulo.value);
-            });
+            });    
+       
+            
         }
+       
+
+
+        //Fim de abrir chamado
+
     }
 
     // Aplicar event listeners inicialmente
