@@ -20,7 +20,10 @@ loginBtn.addEventListener('click', () =>{
 
 const emailInput = document.querySelector("#input-email");
 const senhaInput = document.querySelector("#input-senha");
-
+const containerEmail = document.querySelector(".container-div");
+const containerSenha = document.querySelector(".container-div-pass");
+let spanCreate;
+let spanPass;
 
 logarNaApp.addEventListener("click", function(event){
     event.preventDefault();
@@ -28,16 +31,40 @@ logarNaApp.addEventListener("click", function(event){
     let email = emailInput.value;
     let senha = senhaInput.value;
 
-    if(email == "" || senha == ""){
-        alert("Não deixe o email e a senha vazias")
+    if (spanCreate) {
+        spanCreate.remove();
     }
-
+    if (spanPass) {
+        spanPass.remove();
+    }
+    
     if(validarEmail(email) == false){
-        alert("Email invalido");
+        spanCreate = document.createElement("span");
+        spanCreate.innerHTML = "Email inválido";
+        containerEmail.appendChild(spanCreate);
+        spanCreate.classList.add("aviso");
+    }else if(senha.trim() === ""){
+        spanPass = document.createElement("span");
+        spanPass.innerHTML = "Senha não pode ser vazia";
+        containerSenha.appendChild(spanPass);
+        spanPass.classList.add("aviso");
+    }else{
+        window.location.href="/Tela Principal/telaPrincipal.html"
     }
 
-    //window.location.href="/Tela Principal/telaPrincipal.html"
+    emailInput.addEventListener("input", function(){
+        if(spanCreate){
+            spanCreate.remove();
+        }
+    })
 
+    senhaInput.addEventListener("input", function(){
+        if(spanPass){
+            spanPass.remove();
+        }
+    })
+
+   
 })
 
 
