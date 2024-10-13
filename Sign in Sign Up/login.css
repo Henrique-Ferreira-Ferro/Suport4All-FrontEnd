@@ -116,15 +116,29 @@ body{
 }
 
 .aviso{
-    margin-right: 200px;
+    margin-left: 5px;
     color: red;
 }
 
-.error{
-    background-color: #27afd8;
+.container input.error {
     border: 1px solid red;
 }
 
+.container-div{
+    margin: 0;
+    padding: 0;
+    border: none;
+    width: 100%;
+    background: none;
+}
+
+.container-div-pass{
+    margin: 0;
+    padding: 0;
+    border: none;
+    width: 100%;
+    background: none;
+}
 
 @keyframes move {
     0%, 49.99%{
