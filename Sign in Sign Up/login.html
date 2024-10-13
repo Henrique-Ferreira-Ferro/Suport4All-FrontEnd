@@ -23,7 +23,16 @@
                 </div>
                 <span>Insira suas informações.</span>
                 <input type="text" placeholder="Nome">
-                <input type="text" placeholder="Departamento">
+                <div class="ajust-depart">
+                    <span>Selecione um departamento</span>
+                    <select class="select-ajust-depart" name="Extremidade" id="" >
+                            <option value="">Recursos Humanos</option>
+                            <option value="">Juridico</option>
+                            <option value="">Financeiro</option>
+                            <option value="">Comercial</option>
+                            <option value="">Operacional</option>
+                        </select>
+                </div>
                 <input type="email" placeholder="Email">
                 <input type="password" placeholder="Senha">
                 <button>Cadastrar</button>
@@ -40,6 +49,8 @@
                     <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
                     <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
                 </div>
+
+                
                 <span>Entre com email e senha</span>
                 <div class="container-div">
                     <input type="email" placeholder="Email" id="input-email">
@@ -66,6 +77,15 @@
             </div>
         </div>
     </div>
+    
+    <dialog id="box-dialog" >
+        <p>
+            Ops! Estamos desenvolvendo essas funcionalidades ainda.
+            No momento, preocupe-se em logar e criar seu registro na aplicação!
+            Desde já, agradecemos sua paciência!
+        </p>
+        <button id="btn-fechar">Fechar</button>
+    </dialog>
 
     <script src="login.js"></script>
 </body>

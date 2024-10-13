@@ -14,6 +14,29 @@ loginBtn.addEventListener('click', () =>{
     container.classList.remove("active");
 })
 
+/*Código voltado para dialogo escondido*/
+
+const icons = document.querySelectorAll('.icon');
+const boxDialog = document.querySelector('#box-dialog');
+const btnFechar = document.querySelector('#btn-fechar');
+
+
+icons.forEach(function(icon){
+    icon.addEventListener('click', function(event){
+        event.preventDefault();
+        console.log('icone Clicado: '+ icon.querySelector('i').className)
+        boxDialog.showModal();
+        
+  
+    })
+})
+
+btnFechar.addEventListener("click",function(){
+    boxDialog.close();
+;})
+
+
+/*Fim do código do dialogo escondigo*/
 
 
 //Validações no campo de login inicial
