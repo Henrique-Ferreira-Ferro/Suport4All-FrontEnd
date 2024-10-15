@@ -43,10 +43,10 @@ btnFechar.addEventListener("click",function(){
 
 const emailInput = document.querySelector("#input-email");
 const senhaInput = document.querySelector("#input-senha");
-const containerEmail = document.querySelector(".container-div");
+const containerEmail = document.querySelector(".container-div-email");
 const containerSenha = document.querySelector(".container-div-pass");
-let spanCreate;
-let spanPass;
+let spanCreateLogin;
+let spanPassLogin;
 
 logarNaApp.addEventListener("click", function(event){
     event.preventDefault();
@@ -54,23 +54,23 @@ logarNaApp.addEventListener("click", function(event){
     let email = emailInput.value;
     let senha = senhaInput.value;
 
-    if (spanCreate) {
-        spanCreate.remove();
+    if (spanCreateLogin) {
+        spanCreateLogin.remove();
     }
-    if (spanPass) {
-        spanPass.remove();
+    if (spanPassLogin) {
+        spanPassLogin.remove();
     }
     
     if(validarEmail(email) == false){
-        spanCreate = document.createElement("span");
-        spanCreate.innerHTML = "Email inválido";
-        containerEmail.appendChild(spanCreate);
-        spanCreate.classList.add("aviso");
+        spanCreateLogin = document.createElement("span");
+        spanCreateLogin.innerHTML = "Email inválido";
+        containerEmail.appendChild(spanCreateLogin);
+        spanCreateLogin.classList.add("aviso");
     }else if(senha.trim() === ""){
-        spanPass = document.createElement("span");
-        spanPass.innerHTML = "Senha não pode ser vazia";
-        containerSenha.appendChild(spanPass);
-        spanPass.classList.add("aviso");
+        spanPassLogin = document.createElement("span");
+        spanPassLogin.innerHTML = "Senha não pode ser vazia";
+        containerSenha.appendChild(spanPassLogin);
+        spanPassLogin.classList.add("aviso");
     }else{
         window.location.href="/Tela Principal/telaPrincipal.html"
     }
@@ -78,14 +78,14 @@ logarNaApp.addEventListener("click", function(event){
     //Assim que a pessoa começa a digitar o aviso some. Devo aplicar a registrar?
 
     emailInput.addEventListener("input", function(){
-        if(spanCreate){
-            spanCreate.remove();
+        if(spanCreateLogin){
+            spanCreateLogin.remove();
         }
     })
 
     senhaInput.addEventListener("input", function(){
-        if(spanPass){
-            spanPass.remove();
+        if(spanPassLogin){
+            spanPassLogin.remove();
         }
     })
 
@@ -119,6 +119,9 @@ const conteinerName = document.querySelector(".conteiner-div-name");
 const conteinerEmail = document.querySelector(".conteiner-div-email");
 const conteinerSenha = document.querySelector(".conteiner-div-senha");
 
+let spanCreateRegist; 
+let spanPassRegist;
+
 
 btnCadastrar.addEventListener("click", function(event){
     event.preventDefault();
@@ -140,27 +143,27 @@ btnCadastrar.addEventListener("click", function(event){
    let erro = false;
 
    if (nome.trim() === "") {
-       spanCreate = document.createElement("span");
-       spanCreate.innerHTML = "Nome não pode ser vazio!";
-       conteinerName.appendChild(spanCreate);
-       spanCreate.classList.add("aviso");
-       erro = true;
+        spanCreateRegist = document.createElement("span");
+        spanCreateRegist.innerHTML = "Nome não pode ser vazio!";
+        conteinerName.appendChild(spanCreateRegist);
+        spanCreateRegist.classList.add("aviso");
+        erro = true;
    }
 
    if (!erro && validarEmail(email) == false) {
-       spanCreate = document.createElement("span");
-       spanCreate.innerHTML = "Email inválido";
-       conteinerEmail.appendChild(spanCreate);
-       spanCreate.classList.add("aviso");
-       erro = true;
+        spanCreateRegist = document.createElement("span");
+        spanCreateRegist.innerHTML = "Email inválido";
+        conteinerEmail.appendChild(spanCreateRegist);
+        spanCreateRegist.classList.add("aviso");
+        erro = true;
    }
 
    if (!erro && senha.trim() === "") {
-       spanCreate = document.createElement("span");
-       spanCreate.innerHTML = "Senha não pode ser vazia";
-       conteinerSenha.appendChild(spanCreate);
-       spanCreate.classList.add("aviso");
-       erro = true;
+        spanPassRegist = document.createElement("span");
+        spanPassRegist.innerHTML = "Senha não pode ser vazia";
+        conteinerSenha.appendChild(spanPassRegist);
+        spanPassRegist.classList.add("aviso");
+        erro = true;
    }
    if(!erro){
     window.location.href="/Tela Principal/telaPrincipal.html"
@@ -168,20 +171,20 @@ btnCadastrar.addEventListener("click", function(event){
    
 
    inputEmailRegist.addEventListener("input", function(){
-    if(spanCreate){
-       spanCreate.remove();
+    if(spanCreateRegist){
+        spanCreateRegist.remove();
     }
    })
 
    inputPasswordRegist.addEventListener("input", function(){
-    if(spanCreate){
-           spanPass.remove();
+    if(spanPassRegist){
+        spanPassRegist.remove();
        }
    })
 
    inputName.addEventListener("input", function(){
-    if(spanCreate){
-        spanCreate.remove();
+    if(spanCreateRegist){
+        spanCreateRegist.remove();
        }
    })
 
