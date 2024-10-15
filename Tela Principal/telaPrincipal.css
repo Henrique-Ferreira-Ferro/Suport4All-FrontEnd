@@ -384,6 +384,18 @@ main {
     box-shadow: 0 0 15px #388DA8;
 }
 
+.error{
+    color:red;
+}
+
+.container-div-input-titulo{
+    display: flex;
+    flex-direction: column;
+}
+
+.container-div-input-titulo span{
+    font-size: 14px;
+}
 
 /* FIm Criar chamado !*/
 
