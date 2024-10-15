@@ -140,6 +140,78 @@ body{
     background: none;
 }
 
+
+
+.ajust-depart span{
+    font-size: 13px;
+   
+}
+
+.select-ajust-depart{
+    width: 200px;
+    height: 25px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #eee;
+    font-size: 13px;
+    color: #333;
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    outline: none;
+}
+
+/*Referente a registro*/
+
+
+/*Fim referente a registro*/
+
+/*Referente a caixa de dialogo*/
+
+
+dialog::backdrop {
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+dialog {
+    border: none;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 1em rgba(0, 0, 0, 0.3);
+    width: 50%; /* Tamanho ajustado para o pop-up */
+    padding: 20px;
+    position: fixed;
+    top: 50%; /* Centraliza verticalmente */
+    left: 50%; /* Centraliza horizontalmente */
+    transform: translate(-50%, -50%); /* Garante que o pop-up fique realmente centralizado */
+    background-color: white;
+}
+
+dialog p {
+    font-size: 16px;
+    margin-bottom: 20px; /* Espaço entre o texto e o botão */
+}
+
+#btn-fechar {
+    display: block;
+    background-color: #388DA8;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    margin-top: 20px; /* Espaçamento entre o texto e o botão */
+    transition: box-shadow 0.3s ease, transform 0.3s ease; /* Transição suave para sombra e movimento */
+
+}
+
+#btn-fechar:hover{
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Sombra mais intensa ao passar o mouse */
+    transform: translateY(-3px)
+}
+
+/*Referente a caixa de dialogo*/
+
+
 @keyframes move {
     0%, 49.99%{
         opacity: 0;
