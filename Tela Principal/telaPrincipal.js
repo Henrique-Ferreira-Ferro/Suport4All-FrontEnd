@@ -69,12 +69,28 @@ document.addEventListener("DOMContentLoaded", function() {
         
         const titulo = document.querySelector("#titulo-input");
         const btnAbrir = document.querySelector("#btn-abrir");
+        const containerTituloInsert = document.querySelector(".container-div-input-titulo");
+        let ElementeSpan;
+        
+        
+        if(ElementeSpan){
+            ElementeSpan.remove();
+        }
+
         if(btnAbrir){
             btnAbrir.addEventListener("click", function(){
-                console.log(titulo.value);  // Agora imprime o valor inserido no input
-                alert("Chamado aberto com o título: " + titulo.value);
+                let tituloValue = titulo.value;
+
+                if(tituloValue.trim() == ""){
+                     ElementeSpan = document.createElement("span");
+                    ElementeSpan.innerHTML = "Não deixe o titulo vaziu!"
+                    containerTituloInsert.appendChild(ElementeSpan);
+                    ElementeSpan.setAttribute("class", "error");
+                    
+                }
+                
+
             });    
-       
             
         }
        
