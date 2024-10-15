@@ -386,13 +386,20 @@ main {
 
 .error{
     color:red;
+    font-size: 14px;
 }
 
 .container-div-input-titulo{
     display: flex;
+    gap: 10px;
     flex-direction: column;
 }
 
+.container-div{
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+}
 .container-div-input-titulo span{
     font-size: 14px;
 }
