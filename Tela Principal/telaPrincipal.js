@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", function() {
             });
         });
 
-        // Inicio dos eventos relacionados a chamados
+        // Inicio dos eventos relacionados a chamadosss
         
         const titulo = document.querySelector("#titulo-input");
         const btnAbrir = document.querySelector("#btn-abrir");
