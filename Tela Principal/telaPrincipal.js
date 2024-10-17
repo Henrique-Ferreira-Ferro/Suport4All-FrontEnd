@@ -18,13 +18,13 @@ document.addEventListener("DOMContentLoaded", function() {
     // Função para carregar imagem de um usuario
     document.getElementById('user_avatar').addEventListener('click', function(){
         document.querySelector('.file-input').click();
-    });
+    })
 
-    document.querySelector('.file-input').addEventListener('change', function(event){
+    document.querySelector('.file-input').addEventListener('change',function(event){
         const file = event.target.files[0]; // Obtem o arquivo selecionado
 
         // Se o arquivo existir
-        if (file) {
+        if(file){
             const reader = new FileReader(); // Cria objeto do tipo FileReader para ler o arquivo
             // Quando conclui a leitura, o src da imagem é alterado para a url da imagem
             reader.onload = function(e){
@@ -32,6 +32,7 @@ document.addEventListener("DOMContentLoaded", function() {
             };
             reader.readAsDataURL(file); // Lê o arquivo como uma URL de dados
         }
+
     });
 
     // Função para carregar conteúdo na área principal
@@ -44,24 +45,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 return response.text();
             })
             .then(data => {
-                const parser = new DOMParser();
-                const doc = parser.parseFromString(data, 'text/html');
-    
-                // Inserir o conteúdo HTML na área principal
-                document.getElementById('main-content').innerHTML = doc.body.innerHTML;
-    
-                // Captura todos os scripts da nova página e executa
-                const scripts = doc.querySelectorAll('script');
-                scripts.forEach(oldScript => {
-                    const newScript = document.createElement('script');
-                    if (oldScript.src) {
-                        newScript.src = oldScript.src;
-                    } else {
-                        newScript.textContent = oldScript.textContent;
-                    }
-                    document.body.appendChild(newScript);  // Executa o script
-                });
-    
+                document.getElementById('main-content').innerHTML = data;
                 // Reaplicar os event listeners após o carregamento de nova página
                 applyLinkListeners();
             })
@@ -70,7 +54,6 @@ document.addEventListener("DOMContentLoaded", function() {
                 document.getElementById('main-content').innerHTML = `<p>Desculpe, ocorreu um erro ao carregar o conteúdo.</p>`;
             });
     }
-    
 
     // Função para adicionar event listeners aos links com data-url
     function applyLinkListeners() {
@@ -82,11 +65,39 @@ document.addEventListener("DOMContentLoaded", function() {
             });
         });
 
-        // Adicionar outros eventos necessários para a tela principal
+        // Inicio dos eventos relacionados a chamadosss
+        
+        const titulo = document.querySelector("#titulo-input");
+        const btnAbrir = document.querySelector("#btn-abrir");
+        const containerTituloInsert = document.querySelector(".container-div-input-titulo");
+        let ElementeSpan;
+        
+        
+        if(ElementeSpan){
+            ElementeSpan.remove();
+        }
 
-      
+        if(btnAbrir){
+            btnAbrir.addEventListener("click", function(){
+                let tituloValue = titulo.value;
 
-        //Fim da adição
+                if(tituloValue.trim() == ""){
+                     ElementeSpan = document.createElement("span");
+                    ElementeSpan.innerHTML = "Não deixe o titulo vaziu!"
+                    containerTituloInsert.appendChild(ElementeSpan);
+                    ElementeSpan.setAttribute("class", "error");
+                    
+                }
+                
+
+            });    
+            
+        }
+       
+
+
+        //Fim de abrir chamado
+
     }
 
     // Aplicar event listeners inicialmente
