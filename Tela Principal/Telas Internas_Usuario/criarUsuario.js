@@ -58,10 +58,20 @@ btnCreate.addEventListener("click", function(event){
         spanSenha.innerHTML = "A senha não pode ser vazia!";
         spanSenha.setAttribute("class", "error");
         containerSenha.appendChild(spanSenha);
+    }else{
+        //Conexão com o back-end aqui!
+
+        
+        limparCampos();
     }
 
 })
 
+function limparCampos(){
+        inputName.value = "";
+        inputEmail.value = "";
+        inputSenha.value = "";
+}
 
 // Remoção do span name ao digitar
 
