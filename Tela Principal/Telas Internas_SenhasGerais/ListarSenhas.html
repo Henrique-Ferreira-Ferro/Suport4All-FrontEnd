@@ -12,6 +12,7 @@
       referrerpolicy="no-referrer"
     />
     <link rel="stylesheet" href="../telaPrincipal.css" />
+    <link rel="stylesheet" href="listarSenhas.css">
   </head>
   <body>
     <nav id="sidebar">
@@ -205,7 +206,7 @@
                   </a>
                 </td>
                 <td>
-                  <button class="btn-delete">Deletar</button>
+                  <button id="btnDelete" class="btn-delete">Deletar</button>
                 </td>
               </tr>
             </table>
@@ -213,6 +214,16 @@
         </div>
       </section>
     </main>
+    <dialog id="box-dialog" >
+      <p>
+          Deseja de fato deletar essa Senha?
+      </p>
+      <div class="container-btn">
+        <button id="btnSim">Sim</button>
+        <button id="btnNao">Não</button>
+      </div>
+  </dialog>
     <script src="../telaPrincipal.js"></script>
+    <script src="listarSenhas.js"></script>
   </body>
 </html>
