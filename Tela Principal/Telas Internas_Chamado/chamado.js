@@ -17,6 +17,10 @@
             containerTituloInsert.appendChild(ElementeSpan);
             ElementeSpan.setAttribute("class", "error");
             
+        }else{
+            //Comunicação com o back-end
+
+            limparCampos();
         }
     
     });    
@@ -25,8 +29,11 @@
         ElementeSpan.remove();    
     })
     
+    //Limpeza dos campos
 
-    //Inicio da comunicação com o banco de dados
+    function limparCampos(){
+        titulo.value = "";
+    }
 
     
 
