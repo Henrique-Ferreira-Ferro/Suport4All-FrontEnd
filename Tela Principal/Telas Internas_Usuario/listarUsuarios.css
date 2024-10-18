@@ -1,0 +1,71 @@
+
+dialog {
+    border: none;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 1em rgba(0, 0, 0, 0.3);
+    width: 50%; /* Tamanho ajustado para o pop-up */
+    text-align: center;
+    padding: 20px;
+    position: fixed; /* Mantém a caixa fixa na tela */
+    top: 50%; /* Centraliza verticalmente */
+    left: 50%; /* Centraliza horizontalmente */
+    transform: translate(-50%, -50%); /* Garante que o pop-up fique realmente centralizado */
+    background-color: white;
+    z-index: 1000; /* Garante que a caixa de diálogo esteja na frente de outros elementos */
+    max-width: 500px; /* Define um tamanho máximo, para não ser muito grande em telas pequenas */
+    width: 100%; /* Responsividade: em telas pequenas, ocupa 100% da largura */
+}
+
+body::backdrop {
+    background-color: rgba(0, 0, 0, 0.5); /* Escurece o fundo quando o diálogo estiver ativo */
+}
+
+dialog p {
+    font-size: 16px;
+    margin-bottom: 20px; /* Espaço entre o texto e o botão */
+}
+
+#btnSim {
+    display: block;
+    background-color: #3bcc61;
+    color: white;
+    margin: 20px auto 0 auto; /* Centraliza o botão e adiciona margem superior */
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    margin-top: 20px; /* Espaçamento entre o texto e o botão */
+    transition: box-shadow 0.3s ease, transform 0.3s ease; /* Transição suave para sombra e movimento */
+}
+
+#btnSim:hover{
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Sombra mais intensa ao passar o mouse */
+    transform: translateY(-3px)
+}
+
+#btnNao{
+    display: block;
+    background-color: #b73434;
+    color: white;
+    margin: 20px auto 0 auto; /* Centraliza o botão e adiciona margem superior */
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    margin-top: 20px; /* Espaçamento entre o texto e o botão */
+    transition: box-shadow 0.3s ease, transform 0.3s ease; /* Transição suave para sombra e movimento */
+}
+
+#btnNao:hover{
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Sombra mais intensa ao passar o mouse */
+    transform: translateY(-3px)
+}
+
+.container-btn{
+    display: flex;
+}
+
+
+
