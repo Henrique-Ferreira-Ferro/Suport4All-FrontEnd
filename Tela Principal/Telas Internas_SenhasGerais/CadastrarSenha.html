@@ -111,18 +111,30 @@
                 <h1>Cadastrar Senha</h1>
                 <form action="" class="form-chamado">
                     
+                    
                     <label for="">Origem</label>
-                    <input class="input-ajust-create" type="text">
+                    <div class="container-input-origem container-div">
+                        <input id="input-origem" class="input-ajust-create" type="text">
+                    </div>
+                    
+
                     <div>
                       <label for="">Login</label><span class="span-form">- Opcional</span>
                     </div>
-                    <input class="input-ajust-create" type="text">
+                    <input id="input-login" class="input-ajust-create" type="text">
                     <div>
                       <label for="">Email</label> <span class="span-form">- Opcional</span>
                     </div>
-                    <input class="input-ajust-create" type="text"> 
+                    <input id="input-email" class="input-ajust-create" type="text"> 
+
+
                     <label for="">Senha</label>
-                    <input class="input-ajust-create" type="text">
+                    <div class="container-input-senha container-div">
+                        <input id="input-senha" class="input-ajust-create" type="text">
+                    </div>
+
+
+
                     <div>
                         <label for="">Descrição</label> <span class="span-form">- Opcional</span>
                     </div>
@@ -134,5 +146,6 @@
         </section>
     </main>
     <script src="../telaPrincipal.js"></script>
+    <script src="cadastrarSenha.js"></script>
 </body>
 </html>

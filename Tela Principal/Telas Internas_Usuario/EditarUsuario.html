@@ -112,16 +112,19 @@
                     
 
                     <label for="">Nome</label>
-                    <input class="input-ajust-create" type="text">
-                    
+                    <div class="container-input-name container-div">
+                        <input id="input-nome" class="input-ajust-create" type="text">
+                    </div>
                     <label for="">Email</label>
-                    <input class="input-ajust-create" type="text">
-
+                    <div class="container-input-email container-div">
+                        <input id="input-email" class="input-ajust-create" type="text">
+                    </div>
                     <label for="">Senha</label>
-                    <input class="input-ajust-create" type="password">
-
+                    <div class="container-input-senha container-div">
+                        <input id="input-senha" class="input-ajust-create" type="password" autocomplete="current-password">
+                    </div>
                     <label for="">Departamento</label>
-                    <select class="select-ajust-depart" name="Extremidade" id="" >
+                    <select class="select-ajust-depart" name="Extremidade" id="depart-select" >
                         <option value="">Recursos Humanos</option>
                         <option value="">Juridico</option>
                         <option value="">Financeiro</option>
@@ -130,21 +133,22 @@
                         <option value="">Operacional</option>
                         <option value="">TI - Desenvolvimento</option>
                     </select>
-                 
-
+                    
+                    
                     <label for="">Papel</label>
-                    <select class="select-ajust" name="Extremidade" id="" >
+                    <select class="select-ajust" name="Extremidade" id="role-select" >
                         <option value="">Usuario</option>
                         <option value="">Admin</option>
                     </select>
 
 
                 </form>
-                <button class="btn-forms">Editar Usuario</button>
+                <button id="btn-create" class="btn-forms">Editar Usuario</button>
             </div>
             <img src="/Tela Principal/resources_principal/woman_computer.png" alt="Imagem de uma mulher digitando" class="form-image">
         </section>
     </main>
     <script src="../telaPrincipal.js"></script>
+    <script src="editarUsuario.js"></script>
 </body>
 </html>
