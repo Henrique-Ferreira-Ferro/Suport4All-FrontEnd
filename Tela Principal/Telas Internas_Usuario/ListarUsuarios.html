@@ -6,6 +6,7 @@
     <title>Listar Usuarios</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="../telaPrincipal.css">
+    <link rel="stylesheet" href="listarUsuarios.css">
   </head>
   <body>
     
@@ -149,7 +150,7 @@
                   </a>
                 </td>
                 <td>
-                  <button class="btn-delete">Desativar</button>
+                  <button id="btnDelete" class="btn-delete">Desativar</button>
                 </td>
               </tr>
             </table>
@@ -157,6 +158,17 @@
         </div>
       </section>
    </main>
+
+   <dialog id="box-dialog" >
+    <p>
+        Deseja de fato desativar o Usuario?
+    </p>
+    <div class="container-btn">
+      <button id="btnSim">Sim</button>
+      <button id="btnNao">Não</button>
+    </div>
+</dialog>
    <script src="../telaPrincipal.js"></script>
+   <script src="listarUsuarios.js"></script>
   </body>
 </html>
