@@ -178,6 +178,10 @@ dialog {
     box-shadow: 0 0 1em rgba(0, 0, 0, 0.3);
     width: 50%; /* Tamanho ajustado para o pop-up */
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     position: fixed;
     top: 50%; /* Centraliza verticalmente */
     left: 50%; /* Centraliza horizontalmente */
@@ -196,6 +200,7 @@ dialog p {
     color: white;
     border: none;
     padding: 10px 20px;
+    margin: 20px auto 0 auto; /* Centraliza o botão e adiciona margem superior */
     border-radius: 5px;
     font-size: 14px;
     cursor: pointer;
@@ -208,6 +213,28 @@ dialog p {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Sombra mais intensa ao passar o mouse */
     transform: translateY(-3px)
 }
+
+#btn-fechar-forbidden{
+    display: block;
+    background-color: #388DA8;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 20px auto 0 auto; /* Centraliza o botão e adiciona margem superior */
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    margin-top: 20px; /* Espaçamento entre o texto e o botão */
+    transition: box-shadow 0.3s ease, transform 0.3s ease; /* Transição suave para sombra e movimento */
+
+}
+
+#btn-fechar-forbidden:hover{
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Sombra mais intensa ao passar o mouse */
+    transform: translateY(-3px)
+}
+
+
 
 /*Referente a caixa de dialogo*/
 
