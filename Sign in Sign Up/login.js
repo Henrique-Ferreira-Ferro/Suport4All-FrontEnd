@@ -8,6 +8,7 @@ const formularioLogin = document.querySelector("#forms-login");
 const logarNaApp = document.querySelector("#logar");
 
 
+
 registerBtn.addEventListener('click', () => {
     container.classList.add("active");
 })
@@ -39,6 +40,13 @@ btnFechar.addEventListener("click",function(){
 
 
 /*Fim do código do dialogo escondigo*/
+const boxDialogForbidden = document.querySelector('#box-dialog-forbidden');
+const btnFecharForbidden = document.querySelector("#btn-fechar-forbidden");
+
+btnFecharForbidden.addEventListener('click', function(){
+    boxDialogForbidden.close();
+})
+
 
 // Função para verificar o papel do usuario:
 
@@ -52,10 +60,7 @@ function verificarRole(token){
     return false;
 
 }
-// Exibir PopUp, temporario
 
-
-//Fim da função do popUp escuro
 
 
 //Validações no campo de login inicial
@@ -85,7 +90,7 @@ function logar(){
     .then(response => {
         if(!response.ok){
             if(response.status === 403){
-                alert("Usuario não encontrado ou senha incorreta")
+                boxDialogForbidden.showModal();
             }else if(response.status === 404){
                 alert("Usuario com email ou senha errado!")
             }else{
