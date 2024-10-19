@@ -3,6 +3,28 @@ document.addEventListener("DOMContentLoaded", function () {
     // === Controle da interface principal (telaPrincipal.js) ===
     // ===========================================
 
+    // Função para verificar o papel do usuário
+
+    function verificarRole(token){
+        try{
+            const decodedToken = jwt_decode(token);
+            const roles = decodedToken.roles || [];
+            return roles.includes('ADMIN');
+        }catch(error){
+            return false;
+        }
+    }
+
+    const token = localStorage.getItem('token');
+
+    if(!token || !verificarRole(token)){
+        alert("Você não tem permissão para acessar esta página.");
+        window.location.href = "/Sign in Sign Up/login.html";
+        return;
+    }
+
+    //Fim das validações de papel do usuario!
+
     // Controle da Sidebar
     document.getElementById('open_btn').addEventListener('click', function () {
         document.getElementById('sidebar').classList.toggle('open-sidebar');
@@ -41,7 +63,7 @@ document.addEventListener("DOMContentLoaded", function () {
     btnSair.addEventListener("click", function(event){
         event.preventDefault();
         window.location.href="/Sign in Sign Up/login.html";
-        window.localStorage.clear
+        window.localStorage.clear();
     })
 
 

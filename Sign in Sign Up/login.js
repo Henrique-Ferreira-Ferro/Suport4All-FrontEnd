@@ -3,6 +3,8 @@ const container = document.getElementById('container');
 const registerBtn = document.getElementById('register');
 const loginBtn = document.getElementById('login');
 
+const formularioLogin = document.querySelector("#forms-login");
+
 const logarNaApp = document.querySelector("#logar");
 
 
@@ -38,6 +40,23 @@ btnFechar.addEventListener("click",function(){
 
 /*Fim do código do dialogo escondigo*/
 
+// Função para verificar o papel do usuario:
+
+function verificarRole(token){
+    const decodedToken = jwt_decode(token);
+    const roles = decodedToken.roles || [];
+
+    if(roles.includes('ADMIN')){
+        return true;
+    }
+    return false;
+
+}
+// Exibir PopUp, temporario
+
+
+//Fim da função do popUp escuro
+
 
 //Validações no campo de login inicial
 
@@ -47,6 +66,59 @@ const containerEmail = document.querySelector(".container-div-email");
 const containerSenha = document.querySelector(".container-div-pass");
 let spanCreateLogin;
 let spanPassLogin;
+
+
+// Função para logar na aplicação
+
+function logar(){
+    fetch("http://localhost:8080/auth/login",{
+        headers:{
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        method: "POST",
+        body: JSON.stringify({
+            "email": emailInput.value,
+            "senha": senhaInput.value
+        })
+    })
+    .then(response => {
+        if(!response.ok){
+            if(response.status === 403){
+                alert("Usuario não encontrado ou senha incorreta")
+            }else if(response.status === 404){
+                alert("Usuario com email ou senha errado!")
+            }else{
+                throw new Error('Erro ao tentar logar');
+            }
+        }
+        return response.json();
+    })
+    .then(data => {
+        if(data.token){
+            //Armazena o token e redireciona
+            localStorage.setItem('token', data.token);
+            console.log("Token armazenado com sucesso: ", data.token);
+            
+            if(verificarRole(data.token)){
+
+                window.location.href="/Tela Principal/telaPrincipal.html"
+
+            }else{
+                alert("Ops, estamos trabalhando na sua tela ainda. Espere um pouco :v")
+                //window.location.href="/Tela Usuario/TelaPrincipal.html"
+            }
+            //limpar campos, mas não será necessario talvez
+
+        }else{
+            console.log('Erro ao obter o token: ', data);
+        }
+    })
+    .catch(error => {
+        console.log('Erro ao fazer login: ', error);
+    })
+}
+
 
 logarNaApp.addEventListener("click", function(event){
     event.preventDefault();
@@ -72,7 +144,7 @@ logarNaApp.addEventListener("click", function(event){
         containerSenha.appendChild(spanPassLogin);
         spanPassLogin.classList.add("aviso");
     }else{
-        window.location.href="/Tela Principal/telaPrincipal.html"
+        logar();
     }
 
     //Assim que a pessoa começa a digitar o aviso some. Devo aplicar a registrar?
@@ -121,6 +193,9 @@ const conteinerSenha = document.querySelector(".conteiner-div-senha");
 
 let spanCreateRegist; 
 let spanPassRegist;
+
+
+
 
 
 btnCadastrar.addEventListener("click", function(event){
