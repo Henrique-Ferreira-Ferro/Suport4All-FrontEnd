@@ -16,6 +16,11 @@ const containerSenha = document.querySelector(".container-input-senha");
 let spanOrigem;
 let spanSenha;
 
+function cadastrarSenha(){
+    
+}
+
+
 
 btnCreate.addEventListener("click", function(event){
     valueOrigem = inputOrigem.value;
@@ -40,6 +45,9 @@ btnCreate.addEventListener("click", function(event){
         spanSenha.setAttribute("class", "error");
         containerSenha.appendChild(spanSenha);
     }else{
+
+        cadastrarSenha();
+
         limparCampos();
     }
 
