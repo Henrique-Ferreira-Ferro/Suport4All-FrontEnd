@@ -189,6 +189,11 @@ const inputName = document.querySelector("#input-name");
 const inputEmailRegist = document.querySelector("#input-email-register");
 const inputPasswordRegist = document.querySelector("#input-password-register");
 const btnCadastrar = document.querySelector("#btn-cadastrar");
+let departamentoSelect = "";
+const departamentoSelecionado = document.querySelector("#departamentoSelect");
+departamentoSelecionado.addEventListener('change', function() {
+    departamentoSelect = departamentoSelecionado.value;
+});
 
 //conteiners de registro
 
@@ -199,6 +204,31 @@ const conteinerSenha = document.querySelector(".conteiner-div-senha");
 let spanCreateRegist; 
 let spanPassRegist;
 
+
+//Se conectando com o backend! Inicio do método registrar
+
+function registrar(){
+    fetch("http://localhost:8080/auth/register", {
+        headers:{
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        method: "POST",
+        body: JSON.stringify({
+            "nome": inputName.value,
+            "departamento": departamentoSelect
+            //"email":
+            //"senha":
+            
+            
+        })
+
+    })
+
+}
+
+
+//Fim do método de registrar
 
 
 
@@ -246,7 +276,8 @@ btnCadastrar.addEventListener("click", function(event){
         erro = true;
    }
    if(!erro){
-    window.location.href="/Tela Principal/telaPrincipal.html"
+       // registrar();
+        console.log(departamentoSelect);
    }
    
 
