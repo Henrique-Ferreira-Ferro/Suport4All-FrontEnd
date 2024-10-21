@@ -190,6 +190,17 @@ const inputEmailRegist = document.querySelector("#input-email-register");
 const inputPasswordRegist = document.querySelector("#input-password-register");
 const btnCadastrar = document.querySelector("#btn-cadastrar");
 
+
+let departamentoValor = ""
+const departamentoSelecionado = document.querySelector("#departamentoSelect");
+departamentoValor = departamentoSelecionado.options[departamentoSelecionado.selectedIndex].text;
+
+departamentoSelecionado.addEventListener('change', function() {
+    const indiceCaixa = departamentoSelecionado.selectedIndex;
+    departamentoValor = departamentoSelecionado.options[indiceCaixa].text;
+
+});
+
 //conteiners de registro
 
 const conteinerName = document.querySelector(".conteiner-div-name");
@@ -199,6 +210,57 @@ const conteinerSenha = document.querySelector(".conteiner-div-senha");
 let spanCreateRegist; 
 let spanPassRegist;
 
+
+//Se conectando com o backend! Inicio do método registrar
+
+function registrar(){
+    fetch("http://localhost:8080/auth/register", {
+        headers:{
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        method: "POST",
+        body: JSON.stringify({
+            "nome": inputName.value,
+            "departamento": departamentoValor,
+            "email": inputEmailRegist.value,
+            "senha": inputPasswordRegist.value
+            
+        })
+    })
+    .then(response => {
+        if(!response.ok){
+            if(response.status === 403){
+                alert("Não foi possivel criar a conta!")
+            }else if(response.status === 404){
+                alert("Houve um problema no registro!");
+            }else{
+                throw new Error('Erro ao tentar logar');
+            }
+        }
+        return response.json();
+    })
+    .then(data => {
+        if(data.token){
+            //Vamos por hora apenas armazenar o token e exibir a mensagem
+            //Não tive tempo de montar a tela do usuario
+            localStorage.setItem('token', data.token);
+            console.log('Token armazenado com sucesso: ', data.token);
+            alert("Estamos construindo a tela do usuario no momento. Aguarde!!");
+            //window.location.href = "/telaUsuario/Principal.html"
+            
+
+        }else{
+            console.log("Erro ao obter o token: ", data);
+        }
+    })
+    .catch(error => {
+        console.log('Erro ao fazer registrar: ', error);
+    })
+}
+
+
+//Fim do método de registrar
 
 
 
@@ -246,7 +308,9 @@ btnCadastrar.addEventListener("click", function(event){
         erro = true;
    }
    if(!erro){
-    window.location.href="/Tela Principal/telaPrincipal.html"
+        registrar();
+        limparCamposRegistrar();
+        console.log("Checar se salvou no banco!");
    }
    
 
@@ -275,6 +339,14 @@ btnCadastrar.addEventListener("click", function(event){
 })
 
 
+//Limpar campos em registrar
+
+function limparCamposRegistrar(){
+    inputName.value = "";
+    inputEmailRegist.value = "";
+    inputPasswordRegist.value = "";
+
+}
 
 
 // Fim das validações no campo de registro
