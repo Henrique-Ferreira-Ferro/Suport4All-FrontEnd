@@ -190,6 +190,7 @@ const inputEmailRegist = document.querySelector("#input-email-register");
 const inputPasswordRegist = document.querySelector("#input-password-register");
 const btnCadastrar = document.querySelector("#btn-cadastrar");
 
+
 let departamentoValor = ""
 const departamentoSelecionado = document.querySelector("#departamentoSelect");
 departamentoValor = departamentoSelecionado.options[departamentoSelecionado.selectedIndex].text;
@@ -240,7 +241,21 @@ function registrar(){
         return response.json();
     })
     .then(data => {
-        
+        if(data.token){
+            //Vamos por hora apenas armazenar o token e exibir a mensagem
+            //Não tive tempo de montar a tela do usuario
+            localStorage.setItem('token', data.token);
+            console.log('Token armazenado com sucesso: ', data.token);
+            alert("Estamos construindo a tela do usuario no momento. Aguarde!!");
+            //window.location.href = "/telaUsuario/Principal.html"
+            
+
+        }else{
+            console.log("Erro ao obter o token: ", data);
+        }
+    })
+    .catch(error => {
+        console.log('Erro ao fazer registrar: ', error);
     })
 }
 
@@ -293,8 +308,9 @@ btnCadastrar.addEventListener("click", function(event){
         erro = true;
    }
    if(!erro){
-       // registrar();
-        console.log(departamentoValor);
+        registrar();
+        limparCamposRegistrar();
+        console.log("Checar se salvou no banco!");
    }
    
 
@@ -323,6 +339,14 @@ btnCadastrar.addEventListener("click", function(event){
 })
 
 
+//Limpar campos em registrar
+
+function limparCamposRegistrar(){
+    inputName.value = "";
+    inputEmailRegist.value = "";
+    inputPasswordRegist.value = "";
+
+}
 
 
 // Fim das validações no campo de registro
