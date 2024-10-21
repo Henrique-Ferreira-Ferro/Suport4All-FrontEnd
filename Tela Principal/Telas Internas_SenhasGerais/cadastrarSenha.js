@@ -4,7 +4,12 @@ const btnCreate = document.querySelector("#btn-create");
 
 /*Inputs*/
 const inputOrigem = document.querySelector("#input-origem");
+const inputLogin = document.querySelector("#input-login");
+const inputEmail = document.querySelector("#input-email");
+const txtDescricao = document.querySelector("#txtDescricao");
 const inputSenha = document.querySelector("#input-senha");
+
+
 
 /*Containers dos inputs*/
 const containerOrigem = document.querySelector(".container-input-origem");
@@ -16,11 +21,44 @@ const containerSenha = document.querySelector(".container-input-senha");
 let spanOrigem;
 let spanSenha;
 
+// Conectando ao back-end da aplicação
 function cadastrarSenha(){
-    
+    const token = localStorage.getItem('token');
+
+    fetch("http://localhost:8080/senhas/create", {
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token
+        },
+        method: "POST",
+        body: JSON.stringify({
+            "origem": inputOrigem.value,
+            "login": inputLogin.value,
+            "email": inputEmail.value,
+            "senha": inputSenha.value,
+            "descricao": txtDescricao.value
+        })
+    })
+    .then(response => {
+        if(!response.ok){
+            if(response.status === 403){
+                alert("Usuario não possui autorização para criação de senha!");
+            }else if(response.status === 404){
+                alert("Falha no preenchimento dos campos!");
+            }else{
+                throw new Error("Erro ao tentar cadastrar senha!");
+            }
+        }
+        return response.json;
+    })
+    .catch(error => {
+        console.log("Erro ao tentar cadastrar a senha: ", error);
+    })
 }
 
 
+//Fim da conexão com o back-end da aplicação!
 
 btnCreate.addEventListener("click", function(event){
     valueOrigem = inputOrigem.value;
@@ -56,6 +94,9 @@ btnCreate.addEventListener("click", function(event){
 
 function limparCampos(){
     inputOrigem.value = "";
+    inputLogin.value = "";
+    inputEmail.value = "";
+    txtDescricao.value =  "";
     inputSenha.value = "";
 }
 
