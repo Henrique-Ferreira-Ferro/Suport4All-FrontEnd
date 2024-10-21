@@ -189,10 +189,15 @@ const inputName = document.querySelector("#input-name");
 const inputEmailRegist = document.querySelector("#input-email-register");
 const inputPasswordRegist = document.querySelector("#input-password-register");
 const btnCadastrar = document.querySelector("#btn-cadastrar");
-let departamentoSelect = "";
+
+let departamentoValor = ""
 const departamentoSelecionado = document.querySelector("#departamentoSelect");
+departamentoValor = departamentoSelecionado.options[departamentoSelecionado.selectedIndex].text;
+
 departamentoSelecionado.addEventListener('change', function() {
-    departamentoSelect = departamentoSelecionado.value;
+    const indiceCaixa = departamentoSelecionado.selectedIndex;
+    departamentoValor = departamentoSelecionado.options[indiceCaixa].text;
+
 });
 
 //conteiners de registro
@@ -216,15 +221,27 @@ function registrar(){
         method: "POST",
         body: JSON.stringify({
             "nome": inputName.value,
-            "departamento": departamentoSelect
-            //"email":
-            //"senha":
-            
+            "departamento": departamentoValor,
+            "email": inputEmailRegist.value,
+            "senha": inputPasswordRegist.value
             
         })
-
     })
-
+    .then(response => {
+        if(!response.ok){
+            if(response.status === 403){
+                alert("Não foi possivel criar a conta!")
+            }else if(response.status === 404){
+                alert("Houve um problema no registro!");
+            }else{
+                throw new Error('Erro ao tentar logar');
+            }
+        }
+        return response.json();
+    })
+    .then(data => {
+        
+    })
 }
 
 
@@ -277,7 +294,7 @@ btnCadastrar.addEventListener("click", function(event){
    }
    if(!erro){
        // registrar();
-        console.log(departamentoSelect);
+        console.log(departamentoValor);
    }
    
 
