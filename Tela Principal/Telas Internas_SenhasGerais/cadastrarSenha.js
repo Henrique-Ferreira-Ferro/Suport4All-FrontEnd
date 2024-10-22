@@ -16,6 +16,19 @@ const containerOrigem = document.querySelector(".container-input-origem");
 const containerSenha = document.querySelector(".container-input-senha");
 
 
+//Caixa de dialogo:
+
+const dialog = document.getElementById('box-dialog');
+const btnFechar = document.getElementById('btn-fechar');
+const checkIcon = document.getElementById('checkIcon');
+
+btnFechar.addEventListener("click", function(){
+    dialog.close();
+})
+
+
+//Fim da caixa de dialogo
+
 /*Spans gerados*/
 
 let spanOrigem;
@@ -85,7 +98,8 @@ btnCreate.addEventListener("click", function(event){
     }else{
 
         cadastrarSenha();
-
+        dialog.showModal();
+        checkIcon.classList.add('animate-check');
         limparCampos();
     }
 

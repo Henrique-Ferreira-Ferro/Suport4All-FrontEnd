@@ -5,16 +5,97 @@ const inputName = document.querySelector("#input-nome");
 const inputEmail = document.querySelector("#input-email");
 const inputSenha = document.querySelector("#input-senha");
 
+//Seleção dos departamentos
+
+let departamentoValor = ""
+const departamentoSelecionado = document.querySelector("#departamentoSelect");
+departamentoValor = departamentoSelecionado.options[departamentoSelecionado.selectedIndex].text;
+
+departamentoSelecionado.addEventListener('change', function() {
+    const indiceCaixa = departamentoSelecionado.selectedIndex;
+    departamentoValor = departamentoSelecionado.options[indiceCaixa].text;
+
+});
+
+//Fim da seleção dos departamentos
+
+//Seleção das permissões do usuario
+let papelValor = "";
+const papelSelecionado = document.querySelector("#roleSelect");
+papelValor = papelSelecionado.options[papelSelecionado.selectedIndex].text;
+
+papelSelecionado.addEventListener('change',function(){
+    const indiceCaixa = papelSelecionado.selectedIndex;
+    papelValor = papelSelecionado.options[indiceCaixa].text;
+
+})
+//Fim da seleção das permissões
+
 /*Containers dos inputs*/
 const containerName = document.querySelector(".container-input-name");
 const containerEmail = document.querySelector(".container-input-email");
 const containerSenha = document.querySelector(".container-input-senha");
+
+
+
 
 /*Spans gerados*/
 
 let spanName;
 let spanEmail;
 let spanSenha;
+
+//Caixa de dialogo:
+
+const dialog = document.getElementById('box-dialog');
+const btnFechar = document.getElementById('btn-fechar');
+const checkIcon = document.getElementById('checkIcon');
+
+btnFechar.addEventListener("click", function(){
+    dialog.close();
+})
+
+
+//Fim da caixa de dialogo
+
+//Conexão com o back-end
+
+function criarUsuario(){
+    const token = localStorage.getItem('token');
+
+    fetch("http://localhost:8080/usuario/create", {
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer '+ token
+        },
+        method: "POST",
+        body: JSON.stringify({
+            "nome": inputSenha.value,
+            "email": inputEmail.value,
+            "senha": inputSenha.value,
+            "role": papelValor,
+            "departamentoNome": departamentoValor
+        })
+    })
+    .then(response => {
+        if(!response.of){
+            if(response.status === 403){
+                alert("Usuario não possui autorização para criar usuarios!");
+            }else if(response.status === 404){
+                alert("Falha no preenchimento dos campos!");
+            }else{
+                throw new Error("Erro ao tentar cadastrar Usuario!");
+            }
+        }
+        return response.json;
+    })
+    .catch(error => {
+        console.log("Erro ao tentar cadastrar um usuario: ", error);
+    })
+}
+
+//Fim da conexão com o back-end
 
 //Função para validar email
 
@@ -60,8 +141,9 @@ btnCreate.addEventListener("click", function(event){
         containerSenha.appendChild(spanSenha);
     }else{
         //Conexão com o back-end aqui!
-
-        
+        criarUsuario();
+        dialog.showModal();
+        checkIcon.classList.add('animate-check');
         limparCampos();
     }
 
