@@ -67,7 +67,7 @@ function criarUsuario(){
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer '+ token
+            'Authorization': 'Bearer ' + token
         },
         method: "POST",
         body: JSON.stringify({
@@ -79,9 +79,9 @@ function criarUsuario(){
         })
     })
     .then(response => {
-        if(!response.of){
+        if(!response.ok){
             if(response.status === 403){
-                alert("Usuario não possui autorização para criar usuarios!");
+                alert("Ops, parece que tivemos um problema com o token! Verifique se está logado e se os dados cadastrados estão corretos!");
             }else if(response.status === 404){
                 alert("Falha no preenchimento dos campos!");
             }else{
