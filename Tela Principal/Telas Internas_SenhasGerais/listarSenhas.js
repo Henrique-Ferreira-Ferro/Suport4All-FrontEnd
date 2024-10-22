@@ -61,6 +61,13 @@ function loadTable(senhas) {
         editTd.appendChild(buttonEdit);
         tagTr.appendChild(editTd);
 
+        buttonEdit.addEventListener("click", function() {
+            // Pegue o ID da senha da linha correspondente
+            const senhaId = senhaB.id;
+            // Redireciona para a página de edição passando o ID como parâmetro na URL
+            window.location.href = `editarSenha.html?id=${senhaId}`;
+        });
+
         // Botão Deletar
         let deleteTd = document.createElement("td");
         let buttonDelete = document.createElement("button");
