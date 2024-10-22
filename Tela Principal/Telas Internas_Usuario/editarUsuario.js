@@ -1,3 +1,16 @@
+//Recuperar o id da url
+
+document.addEventListener("DOMContentLoaded", function() {
+    // Recuperar o ID da URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const senhaId = urlParams.get('id');
+
+    console.log("ID da senha para editar:", senhaId); // Verifique se está logando corretamente
+
+    // Continue com o resto do seu código aqui
+});
+
+
 const btnCreate = document.querySelector("#btn-create");
 
 /*Inputs*/
@@ -61,7 +74,7 @@ btnCreate.addEventListener("click", function(event){
     }else{
         //Conexão com o back-end aqui!
 
-        
+
         limparCampos();
     }
 
