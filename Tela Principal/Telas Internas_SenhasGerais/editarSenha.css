@@ -1,0 +1,76 @@
+
+dialog::backdrop {
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+dialog {
+    border: none;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 1em rgba(0, 0, 0, 0.3);
+    width: 50%; /* Tamanho ajustado para o pop-up */
+    padding: 20px;
+    display: flex;
+    z-index: -9999;
+
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 50%; /* Centraliza verticalmente */
+    left: 50%; /* Centraliza horizontalmente */
+    transform: translate(-50%, -50%); /* Garante que o pop-up fique realmente centralizado */
+    background-color: white;
+}
+
+.success-message {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+
+  .check-icon {
+    font-size: 50px;
+    color: rgb(0, 189, 0);
+}
+
+.animate-check {
+    animation: check-animation 1.5s ease-in-out;
+}
+
+#btn-fechar {
+    display: block;
+    background-color: #388DA8;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 20px auto 0 auto; /* Centraliza o botão e adiciona margem superior */
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    margin-top: 20px; /* Espaçamento entre o texto e o botão */
+    transition: box-shadow 0.3s ease, transform 0.3s ease; /* Transição suave para sombra e movimento */
+
+}
+
+#btn-fechar:hover{
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Sombra mais intensa ao passar o mouse */
+    transform: translateY(-3px)
+}
+
+
+  /* Animação do ícone de verificado */
+  @keyframes check-animation {
+    0% {
+      opacity: 0;
+      transform: scale(0) translateY(-30px) rotate(0deg);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.2) translateY(10px) rotate(15deg);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1) translateY(0) rotate(0deg);
+    }
+  }
+
+ 
