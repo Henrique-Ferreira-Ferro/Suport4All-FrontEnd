@@ -1,5 +1,7 @@
 const btnDeletar = document.querySelector(".btnDeleteAction");
 
+//Variavel global para pegar o id da senha
+let senhaIdParaDeletar = null;
 
 const boxDialog = document.querySelector('#box-dialog');
 const btnSim = document.querySelector("#btnSim");
@@ -10,18 +12,6 @@ const tableCont = document.querySelector(".table-senhas");
 
 //Geração automatica de tabela
 
-/*
-Campos da tabela
-
-id
-Origem
-login
-Email
-senha
-descricao
-Editar senha
-Deletar Senha
-*/
 
 function loadTable(senhas) {
     const tableCont = document.querySelector(".table-senhas");
@@ -75,6 +65,7 @@ function loadTable(senhas) {
         buttonDelete.classList.add("btn-delete");
         // Adicionar o evento de clique para abrir o dialog
         buttonDelete.addEventListener("click", function() {
+            senhaIdParaDeletar = senhaB.id;
             boxDialog.showModal(); // Mostrar o dialog de confirmação
         });
 
@@ -117,6 +108,42 @@ function ListarTodasAsSenhas(){
 
 //Fim das conexões com o back-end
 
+//Função para deletar uma senha 
+function deletarSenhaPorId(id){
+    const token = localStorage.getItem('token');
+    
+    fetch(`http://localhost:8080/senhas/${id}`,{
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer '+ token
+        },
+        method: "DELETE"
+    })
+    .then(response => {
+        if(!response.ok){
+            if(response.status === 403){
+                alert("Usuario não possui permissão para deletar a senha!");
+            }else if(response.status === 404){
+                alert("Erro do lado do cliente. Não foi possivel encontrar a senha");
+            }else{
+                throw new Error("Erro ao tentar deletar a senha")
+            }
+        }else{
+            alert("Senha deletada com sucesso!");
+            window.location.reload(); 
+        }
+    })
+    .catch(error => {
+        console.log("Erro ao tentar deletar a senha: ", error);
+    })
+}
+
+
+//Fim da função que deleta uma senha!
+
+
+
 //Evento de abrir pagina
 
 window.addEventListener("DOMContentLoaded", function(event) {
@@ -127,6 +154,12 @@ window.addEventListener("DOMContentLoaded", function(event) {
 
 //Fim do evento de abertura da página
 
+btnSim.addEventListener("click", function(){
+    if(senhaIdParaDeletar){
+        deletarSenhaPorId(senhaIdParaDeletar);
+        boxDialog.close();
+    }
+})
 
 btnNao.addEventListener("click", function(){
     boxDialog.close();
