@@ -131,17 +131,20 @@
                 <th>Nome</th>
                 <th>Role</th>
                 <th>Senha</th>
-                <th>ID Departamento</th>
+                <th>Departamento</th>
+                <th>Status</th>
                 <th>Editar Usuario</th>
                 <th>Desativar Usuario</th>
+                <th>Ativar Usuario</th>
               </tr>
               <tr>
                 <td>1</td>
                 <td>dant@gmail.com</td>
                 <td>Dant F</td>
-                <td>Usuario</td>
+                <td>USER</td>
                 <td>12345</td>
-                <td>2</td>
+                <td>Tecnologia</td>
+                <td>ATIVO</td>
                 <td>
                   <a
                     href="EditarUsuario.html"
@@ -152,6 +155,9 @@
                 <td>
                   <button id="btnDelete" class="btn-delete">Desativar</button>
                 </td>
+                <td>
+                  <button id="btnAtivar" class="btn-ativar">Ativar</button>
+                </td>
               </tr>
             </table>
           </div>
@@ -160,14 +166,15 @@
    </main>
 
    <dialog id="box-dialog" >
-    <p>
-        Deseja de fato desativar o Usuario?
-    </p>
-    <div class="container-btn">
-      <button id="btnSim">Sim</button>
-      <button id="btnNao">Não</button>
-    </div>
-</dialog>
+      <p>
+          Deseja de fato desativar o Usuario?
+      </p>
+      <div class="container-btn">
+        <button id="btnSim">Sim</button>
+        <button id="btnNao">Não</button>
+      </div>
+  </dialog>
+
    <script src="../telaPrincipal.js"></script>
    <script src="listarUsuarios.js"></script>
    <script src="https://cdn.jsdelivr.net/npm/jwt-decode@3.1.2/build/jwt-decode.min.js"></script>
