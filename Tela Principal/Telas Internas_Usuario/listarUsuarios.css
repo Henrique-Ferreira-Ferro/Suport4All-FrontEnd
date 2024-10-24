@@ -69,3 +69,28 @@ dialog p {
 
 
 
+.btn-ativar{
+    background-color: #388DA8;  /* Azul */
+    color: #ffffff;  /* Texto branco */
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: background-color 0.5s ease;
+}
+
+.btn-ativar:hover{
+    cursor: pointer;
+    background-color: #38cc28;  /* Azul mais escuro no hover */
+}
+
+
+
+.user-desligado{
+    background-color: #4e125d;
+    transition: 0.5s;
+}
+
+.user-desligado td{
+    color: white;
+}
+
