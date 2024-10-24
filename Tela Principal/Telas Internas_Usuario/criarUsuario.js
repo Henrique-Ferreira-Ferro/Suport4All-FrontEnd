@@ -71,7 +71,7 @@ function criarUsuario(){
         },
         method: "POST",
         body: JSON.stringify({
-            "nome": inputSenha.value,
+            "nome": inputName.value,
             "email": inputEmail.value,
             "senha": inputSenha.value,
             "role": papelValor,

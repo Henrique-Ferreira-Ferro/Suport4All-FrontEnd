@@ -59,9 +59,9 @@ function loadTable(usuarios) {
 
         buttonEdit.addEventListener("click", function() {
             // Pegue o ID da senha da linha correspondente
-            const senhaId = senhaB.id;
+            const usuarioId = usuariosB.id;
             // Redireciona para a página de edição passando o ID como parâmetro na URL
-            window.location.href = `editarUsuario.html?id=${senhaId}`;
+            window.location.href = `EditarUsuario.html?id=${usuariosB.id}`;
         });
 
         // Botão Deletar
