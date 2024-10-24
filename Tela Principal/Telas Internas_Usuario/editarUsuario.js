@@ -29,6 +29,21 @@ let spanName;
 let spanEmail;
 let spanSenha;
 
+//Conectando com o back-end 
+
+//Função para conectar com o back-end, buscar o id
+
+
+//Fim da função que busca por id
+
+
+//Função para editar um usuario
+
+
+
+//Fim da função de editar um usuario
+
+
 //Função para validar email
 
 function validarEmail(email){

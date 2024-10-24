@@ -14,7 +14,7 @@ const inputSenha = document.querySelector("#input-senha");
 /*Containers dos inputs*/
 const containerOrigem = document.querySelector(".container-input-origem");
 const containerSenha = document.querySelector(".container-input-senha");
-
+const containerEmail = document.querySelector(".container-input-email");
 
 //Caixa de dialogo:
 
@@ -33,6 +33,7 @@ btnFechar.addEventListener("click", function(){
 
 let spanOrigem;
 let spanSenha;
+let spanEmail;
 
 // Conectando ao back-end da aplicação
 function cadastrarSenha(){
@@ -73,10 +74,17 @@ function cadastrarSenha(){
 
 //Fim da conexão com o back-end da aplicação!
 
+//Função para validar email
+
+function validarEmail(email){
+    let regex = /\S+@\S+\.\S+/;
+    return regex.test(email);
+}
+
 btnCreate.addEventListener("click", function(event){
     valueOrigem = inputOrigem.value;
     valueSenha =  inputSenha.value;
-
+    valueEmail = inputEmail.value;
     if(spanSenha){
         spanSenha.remove();
     }
@@ -85,11 +93,20 @@ btnCreate.addEventListener("click", function(event){
         spanOrigem.remove();
     }
 
+    if(spanEmail){
+        spanEmail.remove();
+    }
+
     if(valueOrigem.trim() === ""){
         spanOrigem = document.createElement("span");
         spanOrigem.innerHTML = "A Origem não pode ser vazia!";
         spanOrigem.setAttribute("class", "error");
         containerOrigem.appendChild(spanOrigem);
+    }else if(validarEmail(valueEmail) != true){
+        spanEmail = document.createElement("span");
+        spanEmail.innerHTML = "E-mail fora do padrão!"
+        spanEmail.setAttribute("class", "error");
+        containerEmail.appendChild(spanEmail);
     }else if(valueSenha.trim() === ""){
         spanSenha = document.createElement("span");
         spanSenha.innerHTML = "A senha não pode estar vazia";
@@ -126,5 +143,9 @@ containerSenha.addEventListener("input", function(){
     }
 })
 
-
+containerEmail.addEventListener("input", function(){
+    if(spanEmail){
+        spanEmail.remove();
+    }
+})
 
