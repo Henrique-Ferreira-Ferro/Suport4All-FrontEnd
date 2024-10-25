@@ -101,9 +101,10 @@ function procurarUsuarioPorId(){
         inputEmail.value = data.email,
         //Preciso pegar a senha e descriptografar
         inputSenha.value = data.senha,
-        papelValor = data.role,
-        departamentoValor = data.departamentoNome;
-        statusValor = data.status
+
+        papelSelecionado.options[papelSelecionado.selectedIndex].text = data.role; // Atribui o valor ao select de papel
+        departamentoSelecionado.options[departamentoSelecionado.selectedIndex].text = data.departamentoNome; // Atribui o valor ao select de departamento
+        statusSelecionado.options[statusSelecionado.selectedIndex].text = data.status; // Atribui o valor ao select de status
     })
     .catch(error => {
         console.log("Erro ao carregar os dados da senha: ", error);
