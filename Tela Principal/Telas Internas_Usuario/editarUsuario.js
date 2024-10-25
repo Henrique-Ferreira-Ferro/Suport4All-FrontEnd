@@ -60,6 +60,21 @@ let spanName;
 let spanEmail;
 let spanSenha;
 
+
+//Caixa de dialogo:
+
+const dialog = document.getElementById('box-dialog');
+const btnFechar = document.getElementById('btn-fechar');
+const checkIcon = document.getElementById('checkIcon');
+
+btnFechar.addEventListener("click", function(){
+    dialog.close();
+})
+
+
+//Fim da caixa de dialogo
+
+
 //Conectando com o back-end 
 
 //Função para conectar com o back-end, buscar o id
@@ -188,7 +203,8 @@ btnCreate.addEventListener("click", function(event){
     }else{
         //Conexão com o back-end aqui!
         editarUsuario();
-        alert("Usuario editado com sucesso!")
+        dialog.showModal();
+        checkIcon.classList.add('animate-check');
         limparCampos();
     }
 
