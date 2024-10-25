@@ -97,14 +97,38 @@ function procurarUsuarioPorId(){
         return res.json();
     })
     .then(data => {
-        inputName.value = data.nome,
-        inputEmail.value = data.email,
+        inputName.value = data.nome;
+        inputEmail.value = data.email;
         //Preciso pegar a senha e descriptografar
-        inputSenha.value = data.senha,
+        inputSenha.value = data.senha;
 
-        papelSelecionado.options[papelSelecionado.selectedIndex].text = data.role; // Atribui o valor ao select de papel
-        departamentoSelecionado.options[departamentoSelecionado.selectedIndex].text = data.departamentoNome; // Atribui o valor ao select de departamento
-        statusSelecionado.options[statusSelecionado.selectedIndex].text = data.status; // Atribui o valor ao select de status
+         // Seleciona a opção correta para o papel
+        for (let i = 0; i < papelSelecionado.options.length; i++) {
+            if (papelSelecionado.options[i].text === data.role) {
+                papelSelecionado.selectedIndex = i;
+                papelValor = papelSelecionado.options[i].text; // Atualiza o valor de papelValor
+                break;
+            }
+        }
+
+        // Seleciona a opção correta para o departamento
+        for (let i = 0; i < departamentoSelecionado.options.length; i++) {
+            if (departamentoSelecionado.options[i].text === data.departamentoNome) {
+                departamentoSelecionado.selectedIndex = i;
+                departamentoValor = departamentoSelecionado.options[i].text; // Atualiza o valor de departamentoValor
+                break;
+            }
+        }
+
+        // Seleciona a opção correta para o status
+        for (let i = 0; i < statusSelecionado.options.length; i++) {
+            if (statusSelecionado.options[i].text === data.status) {
+                statusSelecionado.selectedIndex = i;
+                statusValor = statusSelecionado.options[i].text; // Atualiza o valor de statusValor
+                break;
+            }
+        }
+
     })
     .catch(error => {
         console.log("Erro ao carregar os dados da senha: ", error);

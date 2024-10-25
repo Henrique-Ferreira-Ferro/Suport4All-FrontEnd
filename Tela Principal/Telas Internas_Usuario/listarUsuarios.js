@@ -4,13 +4,15 @@ const btnDesativar = document.querySelector(".btnDelete");
 //Ativar usuario
 const btnAtivarUsuario = document.querySelector(".btnAtivar");
 
+//variavel para pegar id do usuario
+let idUsuario = "";
 
 
 const boxDialog = document.querySelector('#box-dialog');
 const btnSim = document.querySelector("#btnSim");
 const btnNao = document.querySelector("#btnNao");
 
-
+let tagTr = "";
 //Geração automatica de tabela
 
 
@@ -18,7 +20,11 @@ function loadTable(usuarios) {
     const tableCont = document.querySelector(".table-usuarios");
 
     usuarios.forEach(usuariosB => {
-        let tagTr = document.createElement("tr");
+        tagTr = document.createElement("tr");
+
+        if(usuariosB.status === "DESLIGADO"){
+            tagTr.classList.add("user-desligado");
+        }
 
         let idTd = document.createElement("td");
         idTd.textContent = usuariosB.id;
@@ -59,12 +65,11 @@ function loadTable(usuarios) {
 
         buttonEdit.addEventListener("click", function() {
             // Pegue o ID da senha da linha correspondente
-            const usuarioId = usuariosB.id;
             // Redireciona para a página de edição passando o ID como parâmetro na URL
             window.location.href = `EditarUsuario.html?id=${usuariosB.id}`;
         });
 
-        // Botão Deletar
+        // Botão desativar
         let desativarTd = document.createElement("td");
         let buttonDesativar = document.createElement("button");
         buttonDesativar.textContent = "Desativar";
@@ -72,6 +77,7 @@ function loadTable(usuarios) {
         buttonDesativar.classList.add("btnDelete");
         // Adicionar o evento de clique para abrir o dialog
         buttonDesativar.addEventListener("click", function() {
+            idUsuario = usuariosB.id;
             boxDialog.showModal();
         });
         desativarTd.appendChild(buttonDesativar);
@@ -84,7 +90,9 @@ function loadTable(usuarios) {
         buttonAtivar.classList.add("btn-ativar");
         buttonAtivar.classList.add("btnAtivar");
         buttonAtivar.addEventListener("click", function(){
+            ativarUsuarioPorId(usuariosB.id);
             alert("Usuario ativado com sucesso!")
+            window.location.reload();
         })
         ativarTd.appendChild(buttonAtivar);
         tagTr.appendChild(ativarTd);
@@ -127,6 +135,75 @@ function listarTodosUsuarios(){
 
 // Fim da conexão com o back-end - listando todos os usuarios;
 
+//Inicio do metodo para alterar o status do usuario para desativado
+function desativarUsuarioPorId(id){
+    const token = localStorage.getItem("token");
+
+    fetch(`http://localhost:8080/usuario/update/status/${id}`,{
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer '+ token
+        },
+        method: "PUT",
+        body: JSON.stringify({
+            "status": "DESLIGADO"
+        })
+    })
+    .then(response => {
+        if(!response.ok){
+            if(response.status === 403){
+                alert("usuario não possui autorização para alterar status de usuarios!");
+            }else if(response.status === 404){
+                alert("Erro ao tentar realizar ação!");
+            }else{
+                throw new Error("Erro ao tentar alterar status");
+            }
+        }
+        return response.json;
+    })
+    .catch(error => {
+        console.log("Erro ao tentar alterar o status ", error);
+    })
+}
+
+
+
+function ativarUsuarioPorId(id){
+    const token = localStorage.getItem("token");
+    fetch(`http://localhost:8080/usuario/update/status/${id}`, {
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer '+ token
+        },
+        method: "PUT",
+        body: JSON.stringify({
+            "status": "ATIVO"
+        })
+    })
+    .then(response => {
+        if(!response.ok){
+            if(response.status === 403){
+                alert("Usuario não possui autorização para ativar usuarios!");
+            }else if(response.status === 404){
+                alert("Erro ao ativar usuario!");
+            }else{
+                throw new Error("Erro não tratado: ")
+            }
+        }
+        return response.json;
+    })
+    .catch(error => {
+        console.log("Erro ao tentar alterar o status: ", error);
+    })
+}
+
+
+
+//Fim do metodo que desativa um usuario
+
+
 window.addEventListener("DOMContentLoaded", function(event){
     event.preventDefault();
     listarTodosUsuarios();
@@ -134,7 +211,9 @@ window.addEventListener("DOMContentLoaded", function(event){
 
 
 btnSim.addEventListener("click", function(){
-    alert("Usuario desativado!");
+    desativarUsuarioPorId(idUsuario);
+    alert("Usuario desativado!");    
+    window.location.reload();
 })
 
 btnNao.addEventListener("click", function(){

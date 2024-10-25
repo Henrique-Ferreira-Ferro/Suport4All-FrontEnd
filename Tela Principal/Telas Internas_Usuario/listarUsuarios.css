@@ -91,6 +91,10 @@ dialog p {
 }
 
 .user-desligado td{
+    text-decoration: line-through;
     color: white;
 }
 
+.user-desligado button{
+    background-color: #005972;
+}
