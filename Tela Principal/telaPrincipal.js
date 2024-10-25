@@ -3,6 +3,22 @@ document.addEventListener("DOMContentLoaded", function () {
     // === Controle da interface principal (telaPrincipal.js) ===
     // ===========================================
 
+
+    //Função para validar se o usuario está ativo
+
+    function verificarUsuarioAtivo(token) {
+        try {
+            const decodedToken = jwt_decode(token);
+            const statusArray = decodedToken.status || []; 
+            const status = statusArray[0] || ""; // Pega o primeiro valor da lista, se existir
+            return status === "ATIVO";
+        } catch (error) {
+            console.log("Erro na verificação do usuário: " + error);
+            return false;
+        }
+    }
+    
+
     // Função para verificar o papel do usuário
 
     function verificarRole(token){
@@ -22,6 +38,14 @@ document.addEventListener("DOMContentLoaded", function () {
         window.location.href = "/Sign in Sign Up/login.html";
         return;
     }
+
+    if (!verificarUsuarioAtivo(token)) {
+        alert("Seu usuário foi desativado e não pode mais acessar o sistema!");
+        window.location.href = "/Sign in Sign Up/login.html";
+        return;
+    }
+    
+
 
     //Fim das validações de papel do usuario!
 
