@@ -79,6 +79,56 @@ function ListarTodosOsDepartamentos(){
 }
 
 
+//Pesquisas avançadas
+//Por nome
+const inputPNome = document.querySelector("#input-search-nome");
+
+function pesquisarPorNome(){
+    const termoPesquisado = inputPNome.value.trim().toLowerCase();
+
+    const nomesFiltrados = departList.filter(departamentos =>
+        departamentos.nomeDepart.toString().toLowerCase().startsWith(termoPesquisado)
+    );
+
+    tableBody.innerHTML = '';
+    loadTable(nomesFiltrados);
+
+}
+
+//Fim da pesquisa por nome
+
+//Pesquisa por id
+const inputPId = document.querySelector("#input-search-id");
+
+function pesquisarPorId(){
+    const termoPesquisado = inputPId.value.trim().toLowerCase();
+
+    const idFiltrados = departList.filter(departamentos => 
+        departamentos.id.toString().toLowerCase().startsWith(termoPesquisado)
+    );
+
+    tableBody.innerHTML = '';
+    loadTable(idFiltrados);
+
+}
+
+
+//Fim da pesquisa por id
+
+//Eventos de clique no teclado
+inputPNome.addEventListener("keyup", function(event){
+    event.preventDefault();
+    pesquisarPorNome();
+})
+
+inputPId.addEventListener("keyup", function(event){
+    event.preventDefault();
+    pesquisarPorId();
+})
+
+
+
+
 //Evento de abrir pagina
 
 window.addEventListener("DOMContentLoaded", function(event){
