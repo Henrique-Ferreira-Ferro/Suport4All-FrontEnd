@@ -119,7 +119,7 @@
                         <label for="">Descrição do departamento</label> <span class="span-form">- Opcional</span>
                     
                     </div>
-                    <textarea class="text-area-depart" name="" id="" ></textarea>
+                    <textarea class="text-area-depart" name="" id="txtDescricao" ></textarea>
                     
 
                 </form>
@@ -128,6 +128,14 @@
             <img src="/Tela Principal/resources_principal/departamentoCreate.jpg" alt="Imagem de pessoas trabalhando" class="form-image">
         </section>
     </main>
+    <dialog id="box-dialog">
+        <p class="success-message">
+          Departamento criado com sucesso!
+        </p>
+        <i  id="checkIcon" class="fas fa-check-circle check-icon"></i>
+        <button id="btn-fechar">Fechar</button>
+      </dialog>
+
     <script src="../telaPrincipal.js"></script>
     <script src="criarDepartamento.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jwt-decode@3.1.2/build/jwt-decode.min.js"></script>
