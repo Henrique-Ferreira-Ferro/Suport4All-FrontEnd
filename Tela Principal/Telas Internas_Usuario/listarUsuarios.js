@@ -206,6 +206,67 @@ function ativarUsuarioPorId(id){
 
 //Fim do metodo que desativa um usuario
 
+//Metodos de pesquisa avançada
+//Pesquisar por nome
+
+const inputPNome = document.querySelector("#input-search-name");
+
+function pesquisarPorNome(){
+    const termoPesquisado = inputPNome.value.trim().toLowerCase();
+
+    const nomesFiltrados = usuariosList.filter(usuario => 
+        usuario.nome.toLowerCase().startsWith(termoPesquisado)
+);
+    tableBody.innerHTML ='';
+    loadTable(nomesFiltrados);
+}
+
+//Fim da pesquisa por nome
+
+const inputPId = document.querySelector("#input-search-id");
+
+function pesquisarPorId(){
+    const termoPesquisado = inputPId.value.trim();
+
+    const idFiltrados = usuariosList.filter(usuario => 
+        usuario.id.toString().toLowerCase().startsWith(termoPesquisado)
+    );
+    tableBody.innerHTML = '';
+    loadTable(idFiltrados);
+}
+
+const inputPDepartamento = document.querySelector("#input-search-departamento");
+
+function pesquisarPorDepartamento(){
+    const termoPesquisado = inputPDepartamento.value.trim().toLowerCase();
+
+    const departamentoFiltrado = usuariosList.filter(usuario => 
+        usuario.departamentoNome.toString().toLowerCase().startsWith(termoPesquisado)
+    );
+
+    tableBody.innerHTML = '';
+
+    loadTable(departamentoFiltrado);
+}
+
+
+//Eventos de buscas por tecla
+
+inputPNome.addEventListener("keyup", function(event){
+    event.preventDefault();
+    pesquisarPorNome();
+})
+
+inputPId.addEventListener("keyup", function(event){
+    event.preventDefault();
+    pesquisarPorId();
+})
+
+inputPDepartamento.addEventListener("keyup", function(event){
+    event.preventDefault();
+    pesquisarPorDepartamento();
+})
+
 
 window.addEventListener("DOMContentLoaded", function(event){
     event.preventDefault();
