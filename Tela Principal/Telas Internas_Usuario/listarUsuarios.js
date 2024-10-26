@@ -14,10 +14,11 @@ const btnNao = document.querySelector("#btnNao");
 
 let tagTr = "";
 //Geração automatica de tabela
+const tableBody = document.querySelector("#table-body");
 
 
 function loadTable(usuarios) {
-    const tableCont = document.querySelector(".table-usuarios");
+    tableBody.innerHTML = '';
 
     usuarios.forEach(usuariosB => {
         tagTr = document.createElement("tr");
@@ -97,13 +98,14 @@ function loadTable(usuarios) {
         ativarTd.appendChild(buttonAtivar);
         tagTr.appendChild(ativarTd);
 
-        tableCont.appendChild(tagTr);
+        tableBody.appendChild(tagTr);
     });
 }
 //Fim do metodo de geração automatica
 
 
 //Inicio da conexão com o Back-End - Listando todos os usuarios 
+let usuariosList = [];
 
 function listarTodosUsuarios(){
     
@@ -124,6 +126,7 @@ function listarTodosUsuarios(){
         return res.json();
     })
     .then(function(usuarios){
+        usuariosList = usuarios;
         loadTable(usuarios);
     })
     .catch(function(error){

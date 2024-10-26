@@ -2,6 +2,7 @@
 
 
 const tableCont = document.querySelector(".table-senhas");
+const tableBody = document.querySelector("#table-body");
 
 
 
@@ -9,7 +10,7 @@ const tableCont = document.querySelector(".table-senhas");
 
 
 function loadTable(departamento) {
-    const tableCont = document.querySelector(".table-senhas");
+    tableBody.innerHTML = '';
 
     departamento.forEach(departamentoB => {
         let tagTr = document.createElement("tr");
@@ -44,11 +45,13 @@ function loadTable(departamento) {
 
        
 
-        tableCont.appendChild(tagTr);
+        tableBody.appendChild(tagTr);
     });
 }
 
 //Função que carrega todos os departamentos
+let departList = [];
+
 function ListarTodosOsDepartamentos(){
     const token = localStorage.getItem('token');
 
@@ -67,6 +70,7 @@ function ListarTodosOsDepartamentos(){
         return res.json();
     })
     .then(function(departamentos){
+        departList = departamentos;
         loadTable(departamentos);
     })
     .catch(function(error){

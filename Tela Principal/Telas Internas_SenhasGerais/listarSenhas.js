@@ -10,12 +10,12 @@ const btnNao = document.querySelector("#btnNao");
 
 const tableCont = document.querySelector(".table-senhas");
 
+const tableBody = document.querySelector("#table-body");
 //Geração automatica de tabela
 
 
 function loadTable(senhas) {
-    const tableCont = document.querySelector(".table-senhas");
-
+    tableBody.innerHTML = '';
     senhas.forEach(senhaB => {
         let tagTr = document.createElement("tr");
 
@@ -72,7 +72,7 @@ function loadTable(senhas) {
         deleteTd.appendChild(buttonDelete);
         tagTr.appendChild(deleteTd);
 
-        tableCont.appendChild(tagTr);
+        tableBody.appendChild(tagTr);
     });
 }
 //Fim do metodo de geração automatica
@@ -80,6 +80,7 @@ function loadTable(senhas) {
 
 //Inicio do metodo para listar todas as senhas 
 //Conexões com o back-end
+let senhasList = [];
 function ListarTodasAsSenhas(){
     const token = localStorage.getItem('token'); // Obtém o token armazenado
 
@@ -98,6 +99,7 @@ function ListarTodasAsSenhas(){
         return res.json();
     })
     .then(function(senhas) {
+        senhasList = senhas;
         loadTable(senhas);
     })
     .catch(function(error) {
@@ -142,6 +144,52 @@ function deletarSenhaPorId(id){
 
 //Fim da função que deleta uma senha!
 
+//Pesquisas avançadas! Pesquiça avançada para origem de senha
+const inputPOrigem = document.querySelector("#input-search-titulo");
+
+function pesquisaAvancadaOrigem() {
+    const termoPesquisa = inputPOrigem.value.trim().toLowerCase();
+
+    // Filtra a lista de senhas com base nas iniciais da origem
+    const senhasFiltradas = senhasList.filter(senha => 
+        senha.origem.toLowerCase().startsWith(termoPesquisa)
+    );
+
+    // Limpa a tabela e carrega apenas as senhas filtradas
+    tableBody.innerHTML = '';
+    loadTable(senhasFiltradas);
+}
+//Fim da pesquisa avançada por origem
+
+//Pesquisa avançada para id!
+
+const inputPId = document.querySelector("#input-search-id");
+
+function pesquisaAvancadaId(){
+    const termoPesquisa = inputPId.value.trim();
+
+    // Filtra a lista de senhas com base nas iniciais do ID
+    const senhasFiltradas = senhasList.filter(senha => 
+        senha.id.toString().startsWith(termoPesquisa)
+    );
+
+    // Limpa a tabela e carrega apenas as senhas filtradas
+    tableBody.innerHTML = '';
+    loadTable(senhasFiltradas);
+}
+
+//Fim da pesquisa avançada por id
+
+//AO digitar irá carregar automaticamente a tabela
+inputPOrigem.addEventListener("keyup", function(event){
+    event.preventDefault();
+    pesquisaAvancadaOrigem();
+})
+
+inputPId.addEventListener("keyup", function(event){
+    event.preventDefault();
+    pesquisaAvancadaId();
+})
 
 
 //Evento de abrir pagina
