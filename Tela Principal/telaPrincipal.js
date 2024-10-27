@@ -44,10 +44,55 @@ document.addEventListener("DOMContentLoaded", function () {
         window.location.href = "/Sign in Sign Up/login.html";
         return;
     }
-    
-
-
     //Fim das validações de papel do usuario!
+
+    //Função para carregar nome e departamento do usuario ao logar na aplicação
+    let idUserByToken = '';
+    function recuperaId(token){
+        try{
+            const decodedToken = jwt_decode(token)
+            idUserByToken = decodedToken.id || [];
+        }catch(error){
+            console.log("Erro ao tentar recuperar id do token: ", error);
+        }
+    }
+
+    const spanLabelNome = document.querySelector("#span-user-label");
+    const spanLabelDepartamento = document.querySelector("#span-depart-label");
+
+    function carregarNomeAndDepartamento(id){
+        const token = localStorage.getItem("token");
+        fetch(`http://localhost:8080/usuario/${id}`, {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer '+ token
+            },
+            method: 'GET'
+        })
+        .then(res => {
+            if(!res.ok){
+                throw new Error(`Erro: ${res.status} - ${res.statusText}`);
+            }
+            return res.json();
+        })
+        .then(function(usuario){
+            spanLabelNome.textContent = usuario.nome,
+            spanLabelDepartamento.textContent = usuario.departamentoNome
+        })
+        .catch(function(error){
+            console.log("Erro ao carregar as informações do usuario: ", error)
+        })
+    }
+
+    //Função para recuperar o id e carregar o nome e o depart
+    recuperaId(token);
+    if(idUserByToken){
+        carregarNomeAndDepartamento(idUserByToken);
+    }
+
+    //Fim da função que carrega nome e departamento 
+
 
     // Controle da Sidebar
     document.getElementById('open_btn').addEventListener('click', function () {
