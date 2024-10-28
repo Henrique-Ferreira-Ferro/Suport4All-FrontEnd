@@ -1,6 +1,7 @@
 
 const tableBody = document.querySelector("#table-body");
 
+let tagTr = "";
 
 function loadTable(chamados) {
     tableBody.innerHTML = '';
@@ -12,30 +13,37 @@ function loadTable(chamados) {
         idTd.textContent = chamadosB.id;
         tagTr.appendChild(idTd);
 
-        let emailTd = document.createElement("td");
-        emailTd.textContent = chamadosB.email;
-        tagTr.appendChild(emailTd);
+        let tituloTd = document.createElement("td");
+        tituloTd.textContent = chamadosB.titulo;
+        tagTr.appendChild(tituloTd);
 
-        let nomeTd = document.createElement("td");
-        nomeTd.textContent = chamadosB.nome;
-        tagTr.appendChild(nomeTd);
-
-        let roleTd = document.createElement("td");
-        roleTd.textContent = chamadosB.role;
-        tagTr.appendChild(roleTd);
-
-        let senhaTd = document.createElement("td");
-        senhaTd.textContent = chamadosB.senha;
-        tagTr.appendChild(senhaTd);
-
-        let departamentoTd = document.createElement("td");
-        departamentoTd.textContent = chamadosB.departamentoNome;
-        tagTr.appendChild(departamentoTd);
+        let dateTd = document.createElement("td");
+        dateTd.textContent = chamadosB.date;
+        tagTr.appendChild(dateTd);
 
         let statusTd = document.createElement("td");
         statusTd.textContent = chamadosB.status;
         tagTr.appendChild(statusTd);
 
+        let descricaoTd = document.createElement("td");
+        descricaoTd.textContent = chamadosB.descricao;
+        tagTr.appendChild(descricaoTd);
+
+        let extremidadeTd = document.createElement("td");
+        extremidadeTd.textContent = chamadosB.extremidade;
+        tagTr.appendChild(extremidadeTd);
+
+        let anexoTd = document.createElement("td");
+        if(chamadosB.anexo != null){
+            anexoTd.textContent = "Arquivo presente"
+        }else{
+            anexoTd.textContent = chamadosB.anexo;
+        }
+        tagTr.appendChild(anexoTd);
+
+        let usuarioIdTd = document.createElement("td");
+        usuarioIdTd.textContent = chamadosB.usuarioId;
+        tagTr.appendChild(usuarioIdTd);
 
         // Botão Editar
         let editTd = document.createElement("td");
@@ -56,4 +64,53 @@ function loadTable(chamados) {
     });
 }
 //Fim do metodo de geração automatica
+
+
+//Inicio da conexão com o back-end -- Listando todos usuarios
+
+let chamadosList = [];
+
+function listarTodosChamados(){
+
+    const token = localStorage.getItem("token");
+
+    fetch("http://localhost:8080/chamado", {
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer '+ token
+        },
+        method: "GET"
+    })
+    .then(res => {
+        if(!res.ok){
+            throw new Error(`Erro: ${res.status} - ${res.statusText}`);
+        }
+        return res.json();
+    })
+    .then(function(chamados){
+        chamadosList = chamados;
+        loadTable(chamados);
+    })
+    .catch(function(error){
+        console.log("Erro ao carregar os chamados: ", error);
+    })
+
+}
+
+
+
+//Carregamento do DOM 
+
+window.addEventListener("DOMContentLoaded", function(event){
+    event.preventDefault();
+    listarTodosChamados();
+})
+
+
+
+
+
+
+
 
