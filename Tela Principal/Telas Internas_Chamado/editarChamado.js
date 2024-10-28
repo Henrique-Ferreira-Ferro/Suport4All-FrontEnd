@@ -56,10 +56,10 @@ function procurarChamadoPorId(){
     .then(data => {
         titulo.value = data.titulo;
 
-        for(let i = 0; i < extremidadeSelecionado.options.length; i++){
-            if(extremidadeSelecionado.options[i].text === data.extremidade){
-                extremidadeSelecionado.selectedIndex = i;
-                extremidadeValor = extremidadeSelecionado.options[i].text;
+        for(let i = 0; i < statusSelecionado.options.length; i++){
+            if(statusSelecionado.options[i].text === data.status){
+                statusSelecionado.selectedIndex = i;
+                statusValor = statusSelecionado.options[i].text;
                 break;
             }
         }
@@ -67,7 +67,7 @@ function procurarChamadoPorId(){
         descricao.value = data.descricao;
     })
     .catch(error => {
-        console.log("Erro ao carregar os dados da senha: ", error);
+        console.log("Erro ao carregar os dados do chamado: ", error);
     })
 }
 
@@ -120,6 +120,7 @@ btnEditar.addEventListener("click", function(event){
     editarChamado();
     dialog.showModal();
     console.log(userId);
+    console.log(statusValor);
     checkIcon.classList.add('animate-check');
     limparCampos();
 })
