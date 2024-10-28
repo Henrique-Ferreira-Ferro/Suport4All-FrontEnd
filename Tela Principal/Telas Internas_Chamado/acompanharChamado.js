@@ -146,11 +146,23 @@ function pesquisaAvancadaData(){
     loadTable(chamadosFiltrados);
 }
 
+//Fim da pesquisa baseada em data
 
-inputPDate.addEventListener("change", function(event){
-    event.preventDefault();
-    pesquisaAvancadaData();
+//Pesquisa baseada em status
+let statusValor = "";
+const statusSelecionado = document.querySelector("#selectStatus");
+statusValor = statusSelecionado.options[statusSelecionado.selectedIndex].text;
+
+function pesquisaAvancadaStatus(){
+    //Preciso dar continuidade aquiiii
+    let termoPesquisa = statusValor
+}
+
+statusSelecionado.addEventListener('change', function(){
+    const indiceCaixa = statusSelecionado.selectedIndex;
+    statusValor = statusSelecionado.options[indiceCaixa].text;
 })
+
 
 //Fim da pesquisa baseada em data
 
@@ -165,7 +177,10 @@ inputPId.addEventListener("keyup", function(event){
     event.preventDefault();
     pesquisaAvancadaId();
 })
-
+inputPDate.addEventListener("change", function(event){
+    event.preventDefault();
+    pesquisaAvancadaData();
+})
 
 //Carregamento do DOM 
 
