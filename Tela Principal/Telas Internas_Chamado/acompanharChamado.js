@@ -98,6 +98,73 @@ function listarTodosChamados(){
 
 }
 
+//Pesquisas avançadas
+//Titulo
+const inputPTitulo = document.querySelector("#input-search-titulo");
+
+function pesquisaAvancadaTitulo(){
+    const termoPesquisa = inputPTitulo.value.trim().toLowerCase();
+
+    //Filtrar a lista de chamados 
+    const chamadosFiltrados = chamadosList.filter(chamado => 
+        chamado.titulo.toLowerCase().startsWith(termoPesquisa)
+    );
+    tableBody.innerHTML = '';
+    loadTable(chamadosFiltrados);
+
+}
+//Fim da pesquisa avançada com base no titulo
+//Id
+const inputPId = document.querySelector("#input-search-id");
+function pesquisaAvancadaId(){
+    const termoPesquisa = inputPId.value.trim();
+
+    //Filtrar a lista de chamados
+    const chamadosFiltrados = chamadosList.filter(chamado => 
+        chamado.id.toString().startsWith(termoPesquisa)
+    );
+    tableBody.innerHTML = '';
+    loadTable(chamadosFiltrados);
+}
+//Fim da pesquisa avançada com base no id
+
+//Pesquisa baseada em data
+
+const inputPDate = document.querySelector("#input-search-date");
+
+function pesquisaAvancadaData(){
+    let dataPartes = inputPDate.value.split('-');
+    let dataFormatada = dataPartes[2] + '/' + dataPartes[1] + "/"+ dataPartes[0];
+
+    const termoPesquisa = dataFormatada;
+
+    //Filtrar a lista
+    const chamadosFiltrados = chamadosList.filter(chamado => 
+        chamado.date.toString().includes(termoPesquisa)
+    );
+    tableBody.innerHTML = '';
+    loadTable(chamadosFiltrados);
+}
+
+
+inputPDate.addEventListener("change", function(event){
+    event.preventDefault();
+    pesquisaAvancadaData();
+})
+
+//Fim da pesquisa baseada em data
+
+
+//Digitamento e carregamento automatico de tabela
+inputPTitulo.addEventListener("keyup", function(event){
+    event.preventDefault();
+    pesquisaAvancadaTitulo();
+})
+
+inputPId.addEventListener("keyup", function(event){
+    event.preventDefault();
+    pesquisaAvancadaId();
+})
 
 
 //Carregamento do DOM 
