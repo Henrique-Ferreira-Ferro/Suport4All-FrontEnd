@@ -149,19 +149,20 @@ function pesquisaAvancadaData(){
 //Fim da pesquisa baseada em data
 
 //Pesquisa baseada em status
-let statusValor = "";
+let statusValor = '';
 const statusSelecionado = document.querySelector("#selectStatus");
-statusValor = statusSelecionado.options[statusSelecionado.selectedIndex].text;
-
 function pesquisaAvancadaStatus(){
-    //Preciso dar continuidade aquiiii
-    let termoPesquisa = statusValor
+
+    statusValor = statusSelecionado.options[statusSelecionado.selectedIndex].text;    
+
+    const chamadosFiltrados = chamadosList.filter(chamado => 
+        chamado.status === statusValor
+    );
+        
+    tableBody.innerHTML = '';
+    loadTable(chamadosFiltrados);
 }
 
-statusSelecionado.addEventListener('change', function(){
-    const indiceCaixa = statusSelecionado.selectedIndex;
-    statusValor = statusSelecionado.options[indiceCaixa].text;
-})
 
 
 //Fim da pesquisa baseada em data
@@ -181,6 +182,11 @@ inputPDate.addEventListener("change", function(event){
     event.preventDefault();
     pesquisaAvancadaData();
 })
+statusSelecionado.addEventListener("change", function(event){
+    event.preventDefault();
+    pesquisaAvancadaStatus();
+})
+
 
 //Carregamento do DOM 
 
