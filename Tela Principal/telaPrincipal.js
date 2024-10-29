@@ -127,6 +127,108 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
+
+    //Carregamento dinamico da contagem dos chamados
+    //Recuperar os ids das tag p
+
+    const aberto = document.querySelector("#p-aberto");
+    const andamento = document.querySelector("#p-andamento");
+    const fechado = document.querySelector("#p-fechado");
+
+    //Carregar chamados abertos - Conectando ao back-end 
+
+    function carregarStatusAberto(){
+        const token = localStorage.getItem("token");
+
+        fetch("http://localhost:8080/chamado/status/aberto", {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer '+ token
+            },
+            method: "GET"
+        })
+        .then(res => {
+            if(!res.ok){
+                throw new Error(`Erro: ${res.status} - ${res.statusText}`)
+            }
+            return res.json();
+        })
+        .then(data => {
+            aberto.innerHTML = data;
+        })
+        .catch(error => {
+            console.log("Erro ao carregar o status aberto dinamicamente! ", error);
+        })
+    }
+    //Fim do carregar chamados abertos
+
+    //Inicio carregamento do status Em andamento
+    function carregarStatusAndamento(){
+        const token = localStorage.getItem("token");
+        
+        fetch("http://localhost:8080/chamado/status/andamento", {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer '+ token
+            },
+            method: "GET"
+        })
+        .then(res => {
+            if(!res.ok){
+                throw new Error(`Erro: ${res.status} - ${res.statusText}`)
+            }
+            return res.json();
+        })
+        .then(data => {
+            andamento.innerHTML = data;
+        })
+        .catch(error => {
+            console.log("Erro ao carregar o status andamento dinamicamente!", error);
+        })
+    }
+    //Fim do carregamento do status Em andamento
+
+    //Inicio carregamento do status Fechado
+    function carregarStatusFechado(){
+        const token = localStorage.getItem("token");
+        fetch("http://localhost:8080/chamado/status/fechado", {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer '+ token
+            },
+            method: "GET"
+        })
+        .then(res => {
+            if(!res.ok){
+                throw new Error(`Erro: ${res.status} - ${res.statusText}`)
+            }
+            return res.json();
+        })
+        .then(data => {
+            fechado.innerHTML = data;
+        })
+        .catch(error => {
+            console.log("Erro ao carregar o status fechado dinamicamente! ", error);
+        })
+    }
+
+    //Fim do carregamento do status fechado
+
+    window.addEventListener("DOMContentLoaded", function(){
+        carregarStatusAberto();
+        carregarStatusAndamento();
+        carregarStatusFechado();
+    })
+
+    
+
+
+    //Fim do carregamento dinâmico da contagem dos chamados
+
+
     //Controle do logout
     let btnSair = document.querySelector("#logout");
     btnSair.addEventListener("click", function(event){
