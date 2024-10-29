@@ -183,6 +183,34 @@ function validarEmail(email){
 
 
 
+//Carregamento dinâmico dos departamentos - Do back para o front
+
+function carregarDepartamentos(){
+
+    fetch("http://localhost:8080/departamento")
+    .then(response => response.json())
+    .then(data => {
+        const departamentoSelect = document.querySelector("#departamentoSelect");
+
+        data.forEach(departamento => {
+            const option = document.createElement("option");
+            option.value = departamento.id;
+            option.textContent = departamento.nomeDepart
+            departamentoSelect.appendChild(option);
+        });
+    })
+    .catch(error => {
+        console.log("Erro ao carregar os departamentos: ", error);
+    });
+
+}
+
+document.addEventListener("DOMContentLoaded", function(){
+    carregarDepartamentos();
+})
+
+//Fim do carregamento dinâmico dos departamentos
+
 //Validações e conexões com o banco no campo de registro
 
 const inputName = document.querySelector("#input-name");
@@ -193,12 +221,11 @@ const btnCadastrar = document.querySelector("#btn-cadastrar");
 
 let departamentoValor = ""
 const departamentoSelecionado = document.querySelector("#departamentoSelect");
-departamentoValor = departamentoSelecionado.options[departamentoSelecionado.selectedIndex].text;
 
 departamentoSelecionado.addEventListener('change', function() {
     const indiceCaixa = departamentoSelecionado.selectedIndex;
     departamentoValor = departamentoSelecionado.options[indiceCaixa].text;
-
+    
 });
 
 //conteiners de registro
@@ -308,6 +335,8 @@ btnCadastrar.addEventListener("click", function(event){
         erro = true;
    }
    if(!erro){
+    departamentoValor = departamentoSelecionado.options[departamentoSelecionado.selectedIndex].text;
+
         registrar();
         limparCamposRegistrar();
         console.log("Checar se salvou no banco!");

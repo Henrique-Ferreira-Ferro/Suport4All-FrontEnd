@@ -9,7 +9,6 @@ const inputSenha = document.querySelector("#input-senha");
 
 let departamentoValor = ""
 const departamentoSelecionado = document.querySelector("#departamentoSelect");
-departamentoValor = departamentoSelecionado.options[departamentoSelecionado.selectedIndex].text;
 
 departamentoSelecionado.addEventListener('change', function() {
     const indiceCaixa = departamentoSelecionado.selectedIndex;
@@ -57,6 +56,31 @@ btnFechar.addEventListener("click", function(){
 
 
 //Fim da caixa de dialogo
+
+
+//Carregamento dinâmico dos departamentos - Do back para o front
+function carregarDepartamentos(){
+
+    fetch("http://localhost:8080/departamento")
+    .then(response => response.json())
+    .then(data => {
+        const departamentoSelect = document.querySelector("#departamentoSelect");
+
+        data.forEach(departamento => {
+            const option = document.createElement("option");
+            option.value = departamento.id;
+            option.textContent = departamento.nomeDepart;
+            departamentoSelect.appendChild(option);
+        });
+    })
+    .catch(error => {
+        console.log("Erro ao carregar os departamentos: ", error);
+    });
+}
+
+
+
+
 
 //Conexão com o back-end
 
@@ -141,6 +165,7 @@ btnCreate.addEventListener("click", function(event){
         containerSenha.appendChild(spanSenha);
     }else{
         //Conexão com o back-end aqui!
+        departamentoValor = departamentoSelecionado.options[departamentoSelecionado.selectedIndex].text;
         criarUsuario();
         dialog.showModal();
         checkIcon.classList.add('animate-check');
@@ -179,5 +204,9 @@ containerSenha.addEventListener("input", function(){
 //Fim da remoção de conteudo
 
 
+//Carregamento da página junto com os departamentos do back
 
+document.addEventListener("DOMContentLoaded", function(){
+    carregarDepartamentos();
+})
 
