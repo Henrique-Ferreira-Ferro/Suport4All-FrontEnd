@@ -10,14 +10,14 @@ function validarEmail(email){
 }
 
 //Pesquisa de usuario existente por email
-let idUser = '';
 function pesquisarUsuarioPorEmail(){
     fetch("http://localhost:8080/usuario/find/email", {
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      method: "GET"
+      method: "POST",
+      body: JSON.stringify({ email: emailInput.value })
     })
     .then(res => {
       if(!res.ok){
@@ -26,7 +26,7 @@ function pesquisarUsuarioPorEmail(){
       return res.json();
     })
     .then(data => {
-      idUser = data.id;
+      let idUser = data.id;
       abrirChamado(idUser);
     })
     .catch(error => {
@@ -44,8 +44,7 @@ function pesquisarUsuarioPorEmail(){
 
 
 const formData = new FormData();
-function abrirChamado(){
-  const token = localStorage.getItem('token');
+function abrirChamado(idUser){
 
   formData.append('titulo', 'Esqueci minha senha!');
   formData.append('descricao', 'Mensagem automatica: Usuario ')
@@ -57,7 +56,7 @@ function abrirChamado(){
       body: formData
   })
   .then(response => {
-    if(!response.status === 403){
+    if(response.status === 403){
       console.log("Problema de acesso!")
     }else if(response.status === 404){
       alert("Usuario não encontrado!");
@@ -86,6 +85,7 @@ btnForget.addEventListener("click", function (event) {
   if (validarEmail(emailInput.value) != true) {
     boxDialog.showModal();
   } else {
+    pesquisarUsuarioPorEmail();
     alert("Seu chamado foi aberto! Aguarde um tempo para que a equipe possa avalia-lo e resetar sua senha!")
     window.location.href = "/Sign%20in%20Sign%20Up/login.html"; 
  }
@@ -94,5 +94,5 @@ btnForget.addEventListener("click", function (event) {
 
 btnFechar.addEventListener("click",function(){
   boxDialog.close();
-;})
+})
 
