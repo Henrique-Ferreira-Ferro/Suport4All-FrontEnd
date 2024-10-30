@@ -9,6 +9,78 @@ function validarEmail(email){
     return regex.test(email);
 }
 
+//Pesquisa de usuario existente por email
+let idUser = '';
+function pesquisarUsuarioPorEmail(){
+    fetch("http://localhost:8080/usuario/find/email", {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      method: "GET"
+    })
+    .then(res => {
+      if(!res.ok){
+        throw new Error(`Erro: ${res.status} - ${res.statusText}`)
+      }
+      return res.json();
+    })
+    .then(data => {
+      idUser = data.id;
+      abrirChamado(idUser);
+    })
+    .catch(error => {
+      console.log("Erro ao resgatar informações do usuario: ", error);
+    })
+}
+
+
+
+//Fim da pesquisa de usuario por email
+
+
+//Conectando com o back-end da aplicação - Abrindo um chamado
+//Ops, como vou abrir um chamado, se somente quem está autenticado pode?
+
+
+const formData = new FormData();
+function abrirChamado(){
+  const token = localStorage.getItem('token');
+
+  formData.append('titulo', 'Esqueci minha senha!');
+  formData.append('descricao', 'Mensagem automatica: Usuario ')
+  formData.append('extremidade', 'SIMPLES')
+  formData.append('usuarioId', idUser)
+
+  fetch("http://localhost:8080/chamado/create", {
+      method: "POST",
+      body: formData
+  })
+  .then(response => {
+    if(!response.status === 403){
+      console.log("Problema de acesso!")
+    }else if(response.status === 404){
+      alert("Usuario não encontrado!");
+    }else{
+      throw new Error("Erro ao tentar abrir o chamado!");
+    }
+    return response.json();
+  })
+  .then(data => {
+    console.log("Chamado criado com sucesso: ", data);
+  })
+  .catch(error => {
+    console.log("Erro ao tentar abrir o chamado ", error);
+  })
+
+}
+
+
+
+//Fim da conexão com o back-end da aplicação - Fechando um chamado
+
+
+
 btnForget.addEventListener("click", function (event) {
     event.preventDefault();
   if (validarEmail(emailInput.value) != true) {
