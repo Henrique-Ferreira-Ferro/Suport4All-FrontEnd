@@ -171,7 +171,11 @@ document.addEventListener("DOMContentLoaded", function () {
         })
         .then(response => {
             if(!response.ok){
-                throw new Error("Erro ao carregar imagem !");
+                if(response.status === 403){
+                    console.log("O usuario não possui uma foto de perfil!")
+                }else{
+                    throw new Error("Erro ao carregar imagem !");
+                }
             }
            return response.blob();
         })
