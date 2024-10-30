@@ -172,7 +172,7 @@ document.addEventListener("DOMContentLoaded", function () {
         .then(response => {
             if(!response.ok){
                 if(response.status === 403){
-                    console.log("O usuario não possui uma foto de perfil!")
+                    document.getElementById('user_avatar').src = "/Tela Principal/resources_principal/User-Profile-PNG.png"
                 }else{
                     throw new Error("Erro ao carregar imagem !");
                 }
