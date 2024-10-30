@@ -109,13 +109,15 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
+    let file = '';
+
     // Função para carregar imagem de um usuário
     document.getElementById('user_avatar').addEventListener('click', function () {
         document.querySelector('.file-input').click();
     });
 
     document.querySelector('.file-input').addEventListener('change', function (event) {
-        const file = event.target.files[0]; // Obtém o arquivo selecionado
+        file = event.target.files[0]; // Obtém o arquivo selecionado
 
         // Se o arquivo existir
         if (file) {
@@ -124,8 +126,69 @@ document.addEventListener("DOMContentLoaded", function () {
                 document.getElementById('user_avatar').src = e.target.result; // Altera o src da imagem
             };
             reader.readAsDataURL(file); // Lê o arquivo como uma URL de dados
+        
+            enviarImagem();
         }
     });
+
+    // Envio da imagem para o back-end - Conexão com o back-end
+    
+    function enviarImagem(){
+        const token = localStorage.getItem('token');
+        const formData = new FormData();
+        formData.append("anexo", file);
+
+        fetch(`http://localhost:8080/usuario/upload/${idUserByToken}`, {
+            method: "POST",
+            headers: {
+                'Authorization': 'Bearer '+ token,
+            },
+            body: formData
+        })
+        .then(response => {
+            if(!response.ok){
+                throw new Error("Falha ao enviar a imagem!");
+            }
+            return response.json();
+        })
+        .then(data => {
+            alert("Imagem enviada com sucesso! ", data);
+        })
+        .catch(error => {
+            console.log("Erro ao enviar a imagem: ", error);
+        });
+    }
+    //Fim do envio da imagem e da conexão com o back-end
+
+    //Recuperando a imagem do usuario a partir do back-end
+    function recuperarImagem(){
+        const token = localStorage.getItem('token');
+        fetch(`http://localhost:8080/usuario/find/photo/${idUserByToken}`, {
+            method: "GET",
+            headers: {
+                'Authorization': 'Bearer '+ token,
+            }
+        })
+        .then(response => {
+            if(!response.ok){
+                throw new Error("Erro ao carregar imagem !");
+            }
+           return response.blob();
+        })
+        .then(blob => {
+            const imageUrl = URL.createObjectURL(blob);
+            document.getElementById('user_avatar').src = imageUrl;
+        })
+        .catch(error => {
+            console.log("Erro ao carregar a imagem do usuario: ", error);
+        });
+    }
+
+
+
+
+    //Fim da recuperação da imagem do usuario a partir do back-end
+
 
 
     //Carregamento dinamico da contagem dos chamados
@@ -221,6 +284,7 @@ document.addEventListener("DOMContentLoaded", function () {
         carregarStatusAberto();
         carregarStatusAndamento();
         carregarStatusFechado();
+        recuperarImagem();
     })
 
     
