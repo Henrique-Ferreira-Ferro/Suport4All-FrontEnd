@@ -27,6 +27,7 @@ function pesquisarUsuarioPorEmail(){
     })
     .then(data => {
       let idUser = data.id;
+      console.log(idUser);
       abrirChamado(idUser);
     })
     .catch(error => {
@@ -43,8 +44,8 @@ function pesquisarUsuarioPorEmail(){
 //Ops, como vou abrir um chamado, se somente quem está autenticado pode?
 
 
-const formData = new FormData();
 function abrirChamado(idUser){
+  const formData = new FormData();
 
   formData.append('titulo', 'Esqueci minha senha!');
   formData.append('descricao', 'Mensagem automatica: Usuario ')
@@ -88,7 +89,7 @@ btnForget.addEventListener("click", function (event) {
     pesquisarUsuarioPorEmail();
     alert("Seu chamado foi aberto! Aguarde um tempo para que a equipe possa avalia-lo e resetar sua senha!")
     window.location.href = "/Sign%20in%20Sign%20Up/login.html"; 
- }
+  }
 });
 
 
