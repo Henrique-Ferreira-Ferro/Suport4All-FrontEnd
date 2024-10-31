@@ -122,7 +122,7 @@ function procurarUsuarioPorId(){
         inputName.value = data.nome;
         inputEmail.value = data.email;
         //Preciso pegar a senha e descriptografar
-        inputSenha.value = data.senha;
+        //inputSenha.value = data.senha;
 
          // Seleciona a opção correta para o papel
         for (let i = 0; i < papelSelecionado.options.length; i++) {
@@ -175,7 +175,6 @@ function editarUsuario(){
         body: JSON.stringify({
             "nome": inputName.value,
             "email": inputEmail.value,
-            "senha": inputSenha.value,
             "role": papelValor,
             "departamentoNome": departamentoValor,
             "status": statusValor
@@ -286,6 +285,80 @@ containerSenha.addEventListener("input", function(){
 
 
 //Fim da remoção de conteudo
+
+// Inicio da atualização da senha do usuario
+const btnEditPass = document.querySelector("#btn-edit-password");
+const dialogPass = document.querySelector("#box-dialog-password");
+
+//Btn para fechar caixa
+const btnClose = document.querySelector("#btn-fechar-pass");
+
+//Btn para editar senha
+const btnEdit = document.querySelector("#btn-pass");
+
+//input para modificar senha
+const inputChangePass = document.querySelector("#input-senha");
+
+//Conexão com o back-end
+
+function editarSenha(){
+    const token = localStorage.getItem("token");
+    
+    fetch(`http://localhost:8080/usuario/update/password/${usuarioId}`, {
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer '+ token
+        },
+        method: "PUT",
+        body: JSON.stringify({
+            "senha": inputChangePass.value
+        })
+    })
+    .then(response => {
+        if(!response.ok){
+            if(response.status === 403){
+                alert("Usuario não pode modificar senhas!");
+            }else if(response.status === 404){
+                alert("Erro no preenchimento dos campos!");
+            }else if(response.ok){
+                return response.json;
+            }else{
+                throw new Error("Erro ao tentar modificar a senha!");
+            }
+        }
+    })
+    .catch(error => {
+        console.log("Erro ao tentar modificar a senha: ", error);
+    })
+    
+}
+
+
+btnEditPass.addEventListener("click", function(event){
+    event.preventDefault();
+    dialogPass.showModal();
+
+})
+
+btnEdit.addEventListener("click", function(event){
+    event.preventDefault();
+    editarSenha();
+    alert("Senha alterada com sucesso!")
+    dialogPass.close();
+})
+
+btnClose.addEventListener("click", function(event){
+    event.preventDefault();
+
+    dialogPass.close();
+})
+
+
+//Fim da atualização da senha do usuario
+
+
+
 
 //Evento ao carregamento do DOM
 

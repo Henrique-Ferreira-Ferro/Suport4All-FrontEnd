@@ -122,7 +122,7 @@
                     </div>
                     <label for="">Senha</label>
                     <div class="container-input-senha container-div">
-                        <input id="input-senha" class="input-ajust-create" type="password" autocomplete="current-password">
+                        <button id="btn-edit-password" class="btn-password">Editar senha</button>
                     </div>
                     <label for="">Departamento</label>
                     <select class="select-ajust-depart" name="Extremidade" id="departamentoSelect" >
@@ -154,6 +154,17 @@
         </p>
         <i  id="checkIcon" class="fas fa-check-circle check-icon"></i>
         <button id="btn-fechar">Fechar</button>
+    </dialog>
+
+    <dialog id="box-dialog-password">
+        <p class="success-message">
+            Edite a nova senha do usuario
+        </p>
+        <input id="input-senha" class="input-ajust-create" type="password" autocomplete="current-password">
+        <div class="cont-btn">
+            <button id="btn-pass">Editar</button>
+            <button id="btn-fechar-pass">Fechar</button>
+        </div>
     </dialog>
 
     <script src="../telaPrincipal.js"></script>

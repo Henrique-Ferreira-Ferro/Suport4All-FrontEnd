@@ -55,6 +55,62 @@ dialog {
     transform: translateY(-3px)
 }
 
+#btn-pass{
+  
+  display: block;
+  background-color: #388DA8;
+  color: white;
+  border: none;
+  padding: 10px 10px;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  margin-top: 20px; /* Espaçamento entre o texto e o botão */
+  transition: box-shadow 0.3s ease, transform 0.3s ease; /* Transição suave para sombra e movimento */
+}
+
+#btn-pass:hover{
+  transform: translateY(-3px);
+  background-color: #3cbe33;
+}
+
+
+#btn-fechar-pass{
+  display: block;
+  background-color: #388DA8;
+  color: white;
+  border: none;
+  padding: 10px 10px;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  margin-top: 20px; /* Espaçamento entre o texto e o botão */
+  transition: box-shadow 0.3s ease, transform 0.3s ease; /* Transição suave para sombra e movimento */
+}
+
+#btn-fechar-pass:hover{
+  transform: translateY(-3px);
+  background-color: #d35330;
+}
+
+.cont-btn{
+  display: flex;
+  width: 200px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.input-ajust-create{
+  border: 1px solid rgb(220, 220, 251);
+    padding: 10px;
+    height: 30px;
+    font-size: 16px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+    outline: none;
+    gap: 10px;
+}
 
   /* Animação do ícone de verificado */
   @keyframes check-animation {
@@ -71,3 +127,21 @@ dialog {
       transform: scale(1) translateY(0) rotate(0deg);
     }
   }
+
+
+.btn-password{
+  width: 170px;
+  height: 30px;
+  background-color: #388DA8;
+  border: none;
+  border-radius: 8px;
+  color: #ffffff;
+  box-shadow: 0 0 5px #388DA8;
+  transition: all 0.5s ease;
+}
+
+.btn-password:hover {
+    cursor: pointer;
+    background-color: #2a6d8a;
+    box-shadow: 0 0 5px #388DA8;
+}
