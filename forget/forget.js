@@ -61,10 +61,11 @@ function abrirChamado(idUser){
       console.log("Problema de acesso!")
     }else if(response.status === 404){
       alert("Usuario não encontrado!");
+    }else if(response.ok){
+      return response.json();
     }else{
       throw new Error("Erro ao tentar abrir o chamado!");
     }
-    return response.json();
   })
   .then(data => {
     console.log("Chamado criado com sucesso: ", data);
