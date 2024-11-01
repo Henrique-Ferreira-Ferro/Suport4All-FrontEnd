@@ -291,8 +291,30 @@ document.addEventListener("DOMContentLoaded", function () {
         recuperarImagem();
     })
 
-    
+    //Levando o usuario para listagem de chamados ao clicar em um do botões
+    let boardAberto = document.querySelector("#board-aberto");
 
+    boardAberto.addEventListener("click", function(event){
+        event.preventDefault();
+        window.location.href="/Tela Principal/Telas Internas_Chamado/AcompanharChamado.html";
+    })
+
+    let boardAndamento = document.querySelector("#board-andamento");
+
+    boardAndamento.addEventListener("click", function(event){
+        event.preventDefault();
+        window.location.href="/Tela Principal/Telas Internas_Chamado/AcompanharChamado.html";
+
+    })
+
+    let boardFechado = document.querySelector("#board-fechamento");
+    boardFechado.addEventListener("click", function(event){
+        event.preventDefault();
+        window.location.href="/Tela Principal/Telas Internas_Chamado/AcompanharChamado.html";
+
+    })
+
+    //Fim do redirecionamento
 
     //Fim do carregamento dinâmico da contagem dos chamados
 
