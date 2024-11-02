@@ -2,6 +2,19 @@
 const tableBody = document.querySelector("#table-body");
 
 let tagTr = "";
+const token = localStorage.getItem('token');
+
+//Recupera id do usuario
+let idUserByToken = '';
+    function recuperaId(token){
+        try{
+            const decodedToken = jwt_decode(token)
+            idUserByToken = decodedToken.id || [];
+        }catch(error){
+            console.log("Erro ao tentar recuperar id do token: ", error);
+        }
+    }
+
 
 function loadTable(chamados) {
     tableBody.innerHTML = '';
@@ -45,19 +58,7 @@ function loadTable(chamados) {
         usuarioIdTd.textContent = chamadosB.usuarioId;
         tagTr.appendChild(usuarioIdTd);
 
-        // Botão Editar
-        let editTd = document.createElement("td");
-        let buttonEdit = document.createElement("button");
-        buttonEdit.textContent = "Editar";
-        buttonEdit.classList.add("btn-edit");
-        editTd.appendChild(buttonEdit);
-        tagTr.appendChild(editTd);
-
-        buttonEdit.addEventListener("click", function() {
-            // Pegue o ID da senha da linha correspondente
-            // Redireciona para a página de edição passando o ID como parâmetro na URL
-            window.location.href = `EditarChamado.html?id=${chamadosB.id}`;
-        });
+       
 
 
         tableBody.appendChild(tagTr);
@@ -69,12 +70,11 @@ function loadTable(chamados) {
 //Inicio da conexão com o back-end -- Listando todos usuarios
 
 let chamadosList = [];
-
 function listarTodosChamados(){
 
     const token = localStorage.getItem("token");
 
-    fetch("http://localhost:8080/chamado", {
+    fetch(`http://localhost:8080/chamado/user/list/${idUserByToken}`, {
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
@@ -192,6 +192,8 @@ statusSelecionado.addEventListener("change", function(event){
 
 window.addEventListener("DOMContentLoaded", function(event){
     event.preventDefault();
+    recuperaId(token);
+    console.log(idUserByToken);
     listarTodosChamados();
 })
 
