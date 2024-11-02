@@ -110,8 +110,8 @@ function logar(){
                 window.location.href="/Tela Principal/telaPrincipal.html"
 
             }else{
-                alert("Ops, estamos trabalhando na sua tela ainda. Espere um pouco :v")
-                //window.location.href="/Tela Usuario/TelaPrincipal.html"
+                
+                window.location.href="/Tela_Principal_Usuario/telaPrincipal_User.html"
             }
             //limpar campos, mas não será necessario talvez
 
@@ -273,8 +273,8 @@ function registrar(){
             //Não tive tempo de montar a tela do usuario
             localStorage.setItem('token', data.token);
             console.log('Token armazenado com sucesso: ', data.token);
-            alert("Estamos construindo a tela do usuario no momento. Aguarde!!");
-            //window.location.href = "/telaUsuario/Principal.html"
+            window.location.href="/Tela_Principal_Usuario/telaPrincipal_User.html"
+
             
 
         }else{
