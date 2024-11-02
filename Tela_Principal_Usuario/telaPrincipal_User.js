@@ -296,21 +296,21 @@ document.addEventListener("DOMContentLoaded", function () {
 
     boardAberto.addEventListener("click", function(event){
         event.preventDefault();
-        window.location.href="/Tela Principal/Telas Internas_Chamado/AcompanharChamado.html";
+        window.location.href="/Tela_Principal_Usuario/Tela_Interna_chamado_usuario/AcompanharChamadoUsuarios.html";
     })
 
     let boardAndamento = document.querySelector("#board-andamento");
 
     boardAndamento.addEventListener("click", function(event){
         event.preventDefault();
-        window.location.href="/Tela Principal/Telas Internas_Chamado/AcompanharChamado.html";
+        window.location.href="/Tela_Principal_Usuario/Tela_Interna_chamado_usuario/AcompanharChamadoUsuarios.html";
 
     })
 
     let boardFechado = document.querySelector("#board-fechamento");
     boardFechado.addEventListener("click", function(event){
         event.preventDefault();
-        window.location.href="/Tela Principal/Telas Internas_Chamado/AcompanharChamado.html";
+        window.location.href="/Tela_Principal_Usuario/Tela_Interna_chamado_usuario/AcompanharChamadoUsuarios.html";
 
     })
 
