@@ -203,11 +203,11 @@ document.addEventListener("DOMContentLoaded", function () {
     const fechado = document.querySelector("#p-fechado");
 
     //Carregar chamados abertos - Conectando ao back-end 
-
+    //idUserByToken
     function carregarStatusAberto(){
         const token = localStorage.getItem("token");
 
-        fetch("http://localhost:8080/chamado/status/aberto", {
+        fetch(`http://localhost:8080/chamado/status/aberto/${idUserByToken}`, {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
@@ -234,7 +234,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function carregarStatusAndamento(){
         const token = localStorage.getItem("token");
         
-        fetch("http://localhost:8080/chamado/status/andamento", {
+        fetch(`http://localhost:8080/chamado/status/andamento/${idUserByToken}`, {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
@@ -260,7 +260,7 @@ document.addEventListener("DOMContentLoaded", function () {
     //Inicio carregamento do status Fechado
     function carregarStatusFechado(){
         const token = localStorage.getItem("token");
-        fetch("http://localhost:8080/chamado/status/fechado", {
+        fetch(`http://localhost:8080/chamado/status/fechado/${idUserByToken}`, {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
