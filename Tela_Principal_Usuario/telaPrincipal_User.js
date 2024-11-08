@@ -119,6 +119,12 @@ document.addEventListener("DOMContentLoaded", function () {
     document.querySelector('.file-input').addEventListener('change', function (event) {
         file = event.target.files[0]; // Obtém o arquivo selecionado
 
+        const maxSize = 1048576;
+        if(file && file.size > maxSize){
+            alert("A imagem selecionada é muito grande! Por favor, escolha uma imagem com menos de 1MB. ")
+            return;
+        }
+
         // Se o arquivo existir
         if (file) {
             const reader = new FileReader(); // Cria objeto do tipo FileReader para ler o arquivo
@@ -173,6 +179,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if(!response.ok){
                 if(response.status === 403){
                     document.getElementById('user_avatar').src = "/Tela Principal/resources_principal/User-Profile-PNG.png"
+                    alert("Imagem enviada muito grande!");
                 }else{
                     throw new Error("Erro ao carregar imagem !");
                 }
