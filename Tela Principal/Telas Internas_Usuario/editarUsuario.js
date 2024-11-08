@@ -241,11 +241,6 @@ btnCreate.addEventListener("click", function(event){
         spanEmail.innerHTML = "Email invalido!"
         spanEmail.setAttribute("class", "error");
         containerEmail.appendChild(spanEmail);
-    }else if(valueSenha.trim() === ""){
-        spanSenha = document.createElement("span");
-        spanSenha.innerHTML = "A senha não pode ser vazia!";
-        spanSenha.setAttribute("class", "error");
-        containerSenha.appendChild(spanSenha);
     }else{
         //Conexão com o back-end aqui!
         departamentoValor = departamentoSelecionado.options[departamentoSelecionado.selectedIndex].text;
