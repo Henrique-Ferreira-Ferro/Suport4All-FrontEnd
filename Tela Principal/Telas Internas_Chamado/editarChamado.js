@@ -8,6 +8,8 @@ const chamadoId = urlParams.get('id');
 //Recuperar o id do usuario
 let userId = "";
 
+//btn para baixar arquivo
+const btnDownload = document.querySelector("#btn-download");
 
 
 //Inputs
@@ -108,9 +110,50 @@ function editarChamado(){
 }
 
 
+//Comunicação com o back-end: Recuperando arquivo enviado
+
+function baixarArquivo(){
+    const token = localStorage.getItem("token");
+
+    fetch(`http://localhost:8080/chamado/download/${chamadoId}`, {
+        headers: {
+            'Authorization': 'Bearer '+ token,
+        },
+        method: "GET",
+    })
+    .then(response => {
+        if(!response.ok){
+            throw new Error(`Erro: ${response.status} - ${response.statusText}`);
+        }
+        return response.blob();
+    })
+    .then(blob => {
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.style.display = "none";
+        a.href = url;
+        a.download = "anexo_chamado_" + chamadoId;
+        document.body.appendChild(a);
+        a.click();
+        window.URL.revokeObjectURL(url);
+    })
+    .catch(error => {
+        console.log("Erro ao tentar baixar o arquivo ", error);
+    });
+}
 
 
 
+btnDownload.addEventListener("click", function(event){
+    event.preventDefault();
+    baixarArquivo();
+    
+
+})
+
+
+
+//Fim da recuperação e download de arquivo enviado
 
 
 
