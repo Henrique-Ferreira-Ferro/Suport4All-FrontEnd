@@ -69,6 +69,7 @@ function abrirChamado(idUser){
   })
   .then(data => {
     console.log("Chamado criado com sucesso: ", data);
+    window.location.href = "/Sign%20in%20Sign%20Up/login.html"; 
   })
   .catch(error => {
     console.log("Erro ao tentar abrir o chamado ", error);
@@ -87,9 +88,8 @@ btnForget.addEventListener("click", function (event) {
   if (validarEmail(emailInput.value) != true) {
     boxDialog.showModal();
   } else {
-    pesquisarUsuarioPorEmail();
     alert("Seu chamado foi aberto! Aguarde um tempo para que a equipe possa avalia-lo e resetar sua senha!")
-    window.location.href = "/Sign%20in%20Sign%20Up/login.html"; 
+    pesquisarUsuarioPorEmail();
   }
 });
 

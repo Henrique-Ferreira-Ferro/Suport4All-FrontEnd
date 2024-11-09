@@ -51,7 +51,7 @@ function criarDepartamento(){
         if(!response.ok){
             if(response.status === 403){
                 //Preciso ajustar isso, pois o nome e a descrição precisam ser iguais para dar um 403
-                alert("Seu demonio! Para de tentar criar um departamento com nome de outro!")
+                alert("Falha ao criar o departamento! Favor se atentar ao tamanho da descrição, ou se já não existe um departamento com nome igual!");
             }else if(response.status === 404){
                 alert("Falha no preechimento dos campos!");
             }else{

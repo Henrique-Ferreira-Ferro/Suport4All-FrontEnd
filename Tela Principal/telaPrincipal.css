@@ -275,7 +275,7 @@ main {
 /*Criar chamado - se houver conflito com os css fazer aqui!*/
 
 .ajust-section {
-    width: 90%;
+    width: 95%;
     max-width: 1200px; 
     height: auto; /* Ajusta a altura automaticamente */
     background-color: white;
@@ -284,6 +284,7 @@ main {
     padding: 20px;
     justify-content: center;
     flex-direction: column; /* Alinhamento em coluna para telas menores */
+    
 }
 
 .div-container{
