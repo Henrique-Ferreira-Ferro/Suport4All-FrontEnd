@@ -39,7 +39,11 @@ function loadTable(chamados) {
         tagTr.appendChild(statusTd);
 
         let descricaoTd = document.createElement("td");
-        descricaoTd.textContent = chamadosB.descricao;
+        if(chamadosB.descricao.length > 100){
+            descricaoTd.textContent = "Descrição Longa";
+        }else{
+            descricaoTd.textContent = chamadosB.descricao;
+        }
         tagTr.appendChild(descricaoTd);
 
         let extremidadeTd = document.createElement("td");

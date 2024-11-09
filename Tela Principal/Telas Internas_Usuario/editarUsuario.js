@@ -338,9 +338,15 @@ btnEditPass.addEventListener("click", function(event){
 
 btnEdit.addEventListener("click", function(event){
     event.preventDefault();
-    editarSenha();
-    alert("Senha alterada com sucesso!")
-    dialogPass.close();
+    let valueSenha = inputSenha.value;
+    if(valueSenha.trim() === ""){
+        alert("Senha não pode ser vazia!")
+    }else{
+        editarSenha();
+         alert("Senha alterada com sucesso!")
+        dialogPass.close();
+    }
+    
 })
 
 btnClose.addEventListener("click", function(event){

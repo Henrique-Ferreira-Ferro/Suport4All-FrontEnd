@@ -23,10 +23,15 @@ function loadTable(departamento) {
         nomeDepartTd.textContent = departamentoB.nomeDepart;
         tagTr.appendChild(nomeDepartTd);
 
-
         let descricaoTd = document.createElement("td");
-        descricaoTd.textContent = departamentoB.descricao;
+        if(departamentoB.descricao.length > 100){
+            descricaoTd.textContent = "Descrição Longa";
+        }else{
+            descricaoTd.textContent = departamentoB.descricao;
+        }
         tagTr.appendChild(descricaoTd);
+
+        
 
         // Botão Editar
         let editTd = document.createElement("td");
