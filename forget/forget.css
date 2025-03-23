@@ -24,7 +24,7 @@ body{
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
     position: relative;
     overflow: hidden;
-    width: 700px;
+    width: 560px;
     display: flex;
     max-width: 100%;
     min-height: 480px;
@@ -33,11 +33,24 @@ body{
     flex-direction: column;
 }
 
+
 .container p{
     font-size: 14px;
     line-height: 20px;
     letter-spacing: 0.3px;
     margin: 20px 0;
+}
+
+.container-retorna{
+    display: flex;
+    justify-content: center;
+    width: 500px;
+}
+
+.container-retorna p a{
+    text-decoration: underline;
+    font-size: 15px;
+    color: #27afd8;
 }
 
 .container span{
@@ -68,7 +81,6 @@ body{
 .container form{
     background-color: #fff;
     display: flex;
-    align-items: center;
     justify-content: center;
     gap: 20px;
     flex-direction: column;
@@ -86,8 +98,15 @@ body{
     border-radius: 8px;
     width: 100%;
     outline: none;
+    transition: 0.2s;
 }
 
+input:focus{
+    border: 1px solid #27afd8; 
+    background-color: #E9F7FF; 
+    outline: none;
+    transition: 0.2s;
+}
 
 .form-container{
     display: flex;

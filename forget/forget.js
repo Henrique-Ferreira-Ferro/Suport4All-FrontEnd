@@ -9,78 +9,27 @@ function validarEmail(email){
     return regex.test(email);
 }
 
-//Pesquisa de usuario existente por email
-function pesquisarUsuarioPorEmail(){
-    fetch("http://localhost:8080/usuario/find/email", {
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      method: "POST",
-      body: JSON.stringify({ email: emailInput.value })
+function enviarEmail(){
+    fetch(`http://localhost:8080/forgotPassword/verifyMail/${emailInput.value}`, {
+       headers:{
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+       },
+       method: "POST"
     })
-    .then(res => {
-      if(!res.ok){
-        throw new Error(`Erro: ${res.status} - ${res.statusText}`)
+    .then(response => {
+      if(response.status === 200){
+          window.location.href = "./infoEmail.html"
+      }else{
+          throw new Error("Erro inesperado ao enviar link!");
       }
-      return res.json();
-    })
-    .then(data => {
-      let idUser = data.id;
-      console.log(idUser);
-      abrirChamado(idUser);
+      return response.json;
     })
     .catch(error => {
-      console.log("Erro ao resgatar informações do usuario: ", error);
+      console.log(error);
     })
-}
-
-
-
-//Fim da pesquisa de usuario por email
-
-
-//Conectando com o back-end da aplicação - Abrindo um chamado
-//Ops, como vou abrir um chamado, se somente quem está autenticado pode?
-
-
-function abrirChamado(idUser){
-  const formData = new FormData();
-
-  formData.append('titulo', 'Esqueci minha senha!');
-  formData.append('descricao', 'Mensagem automatica: Usuario ')
-  formData.append('extremidade', 'SIMPLES')
-  formData.append('usuarioId', idUser)
-
-  fetch("http://localhost:8080/chamado/create", {
-      method: "POST",
-      body: formData
-  })
-  .then(response => {
-    if(response.status === 403){
-      console.log("Problema de acesso!")
-    }else if(response.status === 404){
-      alert("Usuario não encontrado!");
-    }else if(response.ok){
-      return response.json();
-    }else{
-      throw new Error("Erro ao tentar abrir o chamado!");
-    }
-  })
-  .then(data => {
-    console.log("Chamado criado com sucesso: ", data);
-    window.location.href = "/Sign%20in%20Sign%20Up/login.html"; 
-  })
-  .catch(error => {
-    console.log("Erro ao tentar abrir o chamado ", error);
-  })
 
 }
-
-
-
-//Fim da conexão com o back-end da aplicação - Fechando um chamado
-
 
 
 btnForget.addEventListener("click", function (event) {
@@ -88,8 +37,7 @@ btnForget.addEventListener("click", function (event) {
   if (validarEmail(emailInput.value) != true) {
     boxDialog.showModal();
   } else {
-    alert("Seu chamado foi aberto! Aguarde um tempo para que a equipe possa avalia-lo e resetar sua senha!")
-    pesquisarUsuarioPorEmail();
+    enviarEmail();
   }
 });
 
