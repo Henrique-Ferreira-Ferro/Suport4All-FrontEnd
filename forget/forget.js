@@ -20,6 +20,8 @@ function enviarEmail(){
     .then(response => {
       if(response.status === 200){
           window.location.href = "./infoEmail.html"
+      }else if(response.status === 403){
+          alert("Um e-mail de reset de senha já foi enviado anteriormente!");
       }else{
           throw new Error("Erro inesperado ao enviar link!");
       }
