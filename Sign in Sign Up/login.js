@@ -107,7 +107,7 @@ function logar(){
             
             if(verificarRole(data.token)){
 
-                window.location.href="/Tela Principal/telaPrincipal.html"
+                window.location.href="/Tela%20Principal/telaPrincipal.html"
 
             }else{
                 

@@ -1,0 +1,104 @@
+.form-section{
+    justify-content: center;
+}
+
+.tools-card {
+    background: #0f172a;
+    color: #e5e7eb;
+    border-radius: 12px;
+    padding: 24px;
+    width: 600px;
+    max-width: 700px;
+    box-shadow: 0 0 25px rgba(0,0,0,0.4);
+}
+
+.tools-header {
+    margin-bottom: 24px;
+}
+
+.tools-header i {
+    font-size: 28px;
+    color: #38bdf8;
+}
+
+.tools-header h2 {
+    margin: 8px 0;
+}
+
+.tools-header p {
+    font-size: 14px;
+    color: #94a3b8;
+}
+
+.tools-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+
+
+.tools-form input,
+.tools-form select {
+    background: #020617;
+    border: 1px solid #1e293b;
+    padding: 10px;
+    border-radius: 6px;
+    color: #e5e7eb;
+}
+
+.tools-form button {
+    margin-top: 12px;
+    background: #2563eb;
+    border: none;
+    padding: 12px;
+    border-radius: 6px;
+    color: white;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.tools-form button:hover {
+    background: #1d4ed8;
+}
+
+.tools-output {
+    margin-top: 24px;
+    background: #020617;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.output-header {
+    display: flex;
+    justify-content: space-between;
+    background: #020617;
+    padding: 10px 14px;
+    border-bottom: 1px solid #1e293b;
+    font-size: 13px;
+}
+
+.status {
+    font-weight: bold;
+}
+
+.status.idle {
+    color: #94a3b8;
+}
+
+.status.running {
+    color: #facc15;
+}
+
+.status.done {
+    color: #22c55e;
+}
+
+pre {
+    padding: 16px;
+    font-family: monospace;
+    font-size: 13px;
+    color: #e5e7eb;
+    max-height: 300px;
+    overflow-y: auto;
+}
